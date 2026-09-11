@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Návod – Jak si vytvořit vlastní prezentační web projektu</title>
+<meta name="description" content="Krok za krokem: jak si žák 3.G zdarma vytvoří vlastní web pro environmentální kampaň přes GitHub Pages.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧭</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --color-primary:#2f5d55; --color-secondary:#c48454; --color-accent:#3f7cac;
+    --color-text:#22291f; --color-bg:#faf8f4; --color-surface:#fff; --color-border:#e3ddd0;
+    --font-heading:"Poppins","Segoe UI",system-ui,sans-serif;
+    --font-body:"Work Sans","Segoe UI",system-ui,sans-serif;
+    --radius:14px; --radius-sm:8px; --shadow:0 6px 24px rgba(30,40,30,.08);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:var(--font-body);color:var(--color-text);background:var(--color-bg);line-height:1.6}
+  .container{max-width:900px;margin:0 auto;padding:0 20px}
+  h1,h2,h3{font-family:var(--font-heading);line-height:1.25;margin:0 0 .5em}
+  h1{font-size:clamp(1.8rem,4vw,2.6rem)}
+  h2{font-size:1.5rem;color:var(--color-primary)}
+  a{color:var(--color-accent)}
+  p{margin:0 0 1em}
+
+  header.top{background:#1f2d27;color:#f4f1ea;padding:16px 0}
+  header.top .container{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+  header.top a{color:#f4f1ea;opacity:.85;text-decoration:none;font-size:.9rem}
+  header.top a:hover{opacity:1;text-decoration:underline}
+
+  .hero{padding:48px 0 24px}
+  .hero .eyebrow{display:inline-block;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--color-secondary);margin-bottom:10px}
+  .hero .lead{font-size:1.1rem;max-width:65ch}
+
+  .req-box{
+    background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:20px 24px;margin:24px 0 48px;
+  }
+  .req-box ul{margin:8px 0 0;padding-left:1.2em}
+  .req-box li{margin-bottom:4px}
+
+  .step{padding:36px 0;border-top:1px solid var(--color-border)}
+  .step .num-row{display:flex;align-items:center;gap:14px;margin-bottom:6px}
+  .num{
+    width:38px;height:38px;border-radius:50%;background:var(--color-primary);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-family:var(--font-heading);font-weight:700;flex:none;
+  }
+  .step h2{margin:0}
+  .step .desc{max-width:65ch;margin-top:10px}
+
+  /* ---- mockup UI diagramy (ilustrativní, ne skutečné snímky obrazovky) ---- */
+  .mock{
+    margin-top:20px; max-width:640px; border-radius:var(--radius); overflow:hidden;
+    border:1px solid var(--color-border); box-shadow:var(--shadow); background:#fff;
+  }
+  .mock .bar{
+    background:#eef0ee; padding:8px 12px; display:flex; align-items:center; gap:8px; border-bottom:1px solid var(--color-border);
+  }
+  .mock .bar .dot{width:9px;height:9px;border-radius:50%;background:#d7d2c6}
+  .mock .bar .url{
+    flex:1; background:#fff; border:1px solid var(--color-border); border-radius:999px;
+    font-size:.72rem; padding:4px 10px; color:#667; font-family:monospace; overflow:hidden; white-space:nowrap;
+  }
+  .mock .body{padding:18px}
+  .mock .row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 0}
+  .mock .row + .row{border-top:1px dashed var(--color-border)}
+  .mock .file{display:flex;align-items:center;gap:8px;font-size:.85rem}
+  .mock .btn{
+    display:inline-flex;align-items:center;gap:6px;background:#2da44e;color:#fff;border:none;
+    border-radius:6px;padding:7px 14px;font-size:.82rem;font-weight:600;
+  }
+  .mock .btn.gray{background:#f0f1f3;color:#222;border:1px solid #d7dadf}
+  .mock .btn.blue{background:var(--color-accent)}
+  .mock .field{
+    border:1px solid #d7dadf;border-radius:6px;padding:6px 10px;font-size:.82rem;font-family:monospace;background:#fafbfc;
+  }
+  .mock .side{width:130px;font-size:.8rem;color:#556;flex:none}
+  .mock .side .item{padding:6px 8px;border-radius:6px}
+  .mock .side .item.active{background:#eef2ff;color:var(--color-accent);font-weight:700}
+  .mock .callout{
+    display:inline-flex;align-items:center;gap:6px;background:#fff4e5;border:1px solid var(--color-secondary);
+    color:#8a5a28;border-radius:999px;padding:3px 12px;font-size:.76rem;font-weight:700;margin-top:10px;
+  }
+  .mock .banner-ok{
+    background:#dafbe1;border:1px solid #7ee2a8;color:#116329;border-radius:8px;padding:10px 14px;font-size:.82rem;
+  }
+  .mock textarea.fake{
+    width:100%;min-height:70px;border:1px solid #d7dadf;border-radius:6px;padding:10px;font-family:monospace;font-size:.78rem;color:#333;background:#fafbfc;
+  }
+  .mock code.tag{color:#953800}
+
+  details.faq{
+    background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-sm);
+    padding:14px 18px;margin-bottom:10px;
+  }
+  details.faq summary{font-weight:700;cursor:pointer;font-family:var(--font-heading);}
+  details.faq p{margin-top:10px;font-size:.95rem}
+
+  footer.site-footer{background:#1f2d27;color:#f4f1ea;padding:32px 0;margin-top:40px;font-size:.9rem}
+  footer.site-footer a{color:#f4f1ea}
+  .cta-end{text-align:center;padding:40px 0}
+  .btn-big{
+    display:inline-block;background:var(--color-primary);color:#fff;text-decoration:none;font-weight:700;
+    padding:14px 28px;border-radius:999px;
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="container">
+    <strong>🌿 Vizuální kampaň pro klimatickou adaptaci · 3.G</strong>
+    <a href="index.html">← zpět na rozcestník projektu</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <p class="eyebrow">Návod pro žáky</p>
+    <h1>Jak si zdarma vytvořit vlastní prezentační web svojí kampaně</h1>
+    <p class="lead">
+      Tenhle web si vytvoříš přes <strong>GitHub Pages</strong> – zdarma, bez reklam,
+      na vlastní adrese tvar <code>tvoje-jmeno.github.io/nazev-projektu</code>.
+      Nic si neinstaluješ, celý postup zvládneš v prohlížeči. Zabere to
+      cca 15–20 minut.
+    </p>
+
+    <div class="req-box">
+      <strong>Co budeš potřebovat</strong>
+      <ul>
+        <li>Účet na <a href="https://github.com" target="_blank" rel="noopener">github.com</a> (zdarma – pokud ho nemáš, založíš v kroku 1)</li>
+        <li>Svoje soubory: hlavní vizuál, moodboard, bannery, plakát (PDF) a jeho náhled, případně krátké mp4</li>
+        <li>Chvilku času a tenhle návod otevřený v druhém okně/záložce</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- KROK 1 -->
+<div class="step">
+  <div class="container">
+    <div class="num-row"><span class="num">1</span><h2>Založ si účet na GitHubu</h2></div>
+    <p class="desc">
+      Pokud už účet máš (třeba z jiné hodiny), tenhle krok přeskoč.
+      Jinak jdi na <a href="https://github.com/signup" target="_blank" rel="noopener">github.com/signup</a>,
+      zadej e-mail, heslo a uživatelské jméno (bude součástí adresy tvého
+      budoucího webu, takže zvol rozumné jméno) a dokonči ověření.
+    </p>
+    <div class="mock">
+      <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">github.com/signup</div></div>
+      <div class="body">
+        <div class="row"><span class="side" style="width:auto">E-mail</span><span class="field" style="flex:1">tvuj@email.cz</span></div>
+        <div class="row"><span class="side" style="width:auto">Heslo</span><span class="field" style="flex:1">••••••••••</span></div>
+        <div class="row"><span class="side" style="width:auto">Uživatelské jméno</span><span class="field" style="flex:1">novak-jan</span></div>
+        <div class="row" style="justify-content:flex-end;"><span class="btn">Create account</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- KROK 2 -->
+<div class="step">
+  <div class="container">
+    <div class="num-row"><span class="num">2</span><h2>Vytvoř si web ze šablony</h2></div>
+    <p class="desc">
+      Otevři šablonový repozitář, který ti dá učitel (odkaz najdeš i na
+      rozcestníku projektu). Na jeho hlavní stránce klikni na zelené
+      tlačítko <strong>„Use this template“</strong> → <strong>„Create a new repository“</strong>.
+    </p>
+    <div class="mock">
+      <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">github.com/SKOLA/enviro-sablona-3g</div></div>
+      <div class="body">
+        <div class="row">
+          <span class="file">📁 enviro-sablona-3g</span>
+          <span class="btn">Use this template ▾</span>
+        </div>
+        <span class="callout">👆 1. Klikni sem</span>
+        <div class="row" style="margin-top:14px;">
+          <span class="btn gray" style="opacity:.5">Open in a codespace</span>
+          <span class="btn blue">Create a new repository</span>
+        </div>
+        <span class="callout">👆 2. Pak sem</span>
+      </div>
+    </div>
+    <p class="desc" style="margin-top:16px;">
+      Na další obrazovce zadej jméno repozitáře – doporučený tvar
+      <code class="tag">prijmeni-tema</code> (např. <code>novak-zdonov</code>),
+      ponech ho <strong>Public</strong> (veřejný – jinak web nepůjde zveřejnit
+      zdarma) a klikni <strong>Create repository</strong>.
+    </p>
+  </div>
+</div>
+
+<!-- KROK 3 -->
+<div class="step">
+  <div class="container">
+    <div class="num-row"><span class="num">3</span><h2>Zapni GitHub Pages</h2></div>
+    <p class="desc">
+      V novém repozitáři jdi do <strong>Settings</strong> (nahoře) → v levém
+      menu <strong>Pages</strong>. U „Build and deployment“ vyber jako
+      <strong>Branch</strong> položku <code class="tag">main</code> a složku
+      <code class="tag">/ (root)</code>, pak <strong>Save</strong>.
+    </p>
+    <div class="mock">
+      <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">github.com/.../settings/pages</div></div>
+      <div class="body" style="display:flex;gap:16px;">
+        <div class="side">
+          <div class="item">General</div>
+          <div class="item active">Pages</div>
+          <div class="item">Collaborators</div>
+        </div>
+        <div style="flex:1;">
+          <div class="row"><span style="font-size:.82rem;">Branch</span><span class="field">main</span><span class="field">/ (root)</span><span class="btn">Save</span></div>
+          <div class="banner-ok" style="margin-top:14px;">✅ Your site is live at <strong>https://novak-jan.github.io/novak-zdonov/</strong></div>
+        </div>
+      </div>
+    </div>
+    <p class="desc" style="margin-top:16px;">
+      Adresa se aktivuje do 1–2 minut. Ulož si ji – budeš ji na konci
+      posílat učiteli.
+    </p>
+  </div>
+</div>
+
+<!-- KROK 4 -->
+<div class="step">
+  <div class="container">
+    <div class="num-row"><span class="num">4</span><h2>Uprav texty přímo na GitHubu</h2></div>
+    <p class="desc">
+      V repozitáři klikni na soubor <code class="tag">index.html</code>,
+      pak vpravo nahoře na ikonku tužky ✏️ (Edit this file). Najdi místa
+      označená komentářem typu <code>&lt;!-- TVŮJ CLAIM --&gt;</code> a
+      přepiš je svým textem. Dole na stránce klikni <strong>Commit changes</strong>
+      (= ulož a zveřejni).
+    </p>
+    <div class="mock">
+      <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">.../edit/main/index.html</div></div>
+      <div class="body">
+        <div class="row"><span class="file">📝 index.html</span><span class="btn gray">✏️ Edit</span></div>
+        <span class="callout">👆 Klikni na tužku</span>
+        <textarea class="fake" readonly>&lt;h1 class="claim"&gt;
+  Sem vlož úderný slogan svojí kampaně.
+&lt;/h1&gt;</textarea>
+        <div class="row" style="justify-content:flex-end;margin-top:10px;"><span class="btn">Commit changes</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- KROK 5 -->
+<div class="step">
+  <div class="container">
+    <div class="num-row"><span class="num">5</span><h2>Nahraj vlastní obrázky, PDF a video</h2></div>
+    <p class="desc">
+      Přejdi do složky <code class="tag">assets</code> → <strong>Add file</strong> →
+      <strong>Upload files</strong> → přetáhni svůj soubor myší. Nejjednodušší
+      je nahradit placeholder soubor <strong>stejným názvem</strong>
+      (např. tvůj banner ulož jako <code>banner-300x250-NAHRAD.jpg</code>) –
+      pak v HTML nemusíš nic měnit. Chceš-li vlastní názvy, uprav i
+      odpovídající <code>src="..."</code>/<code>href="..."</code> v kroku 4.
+    </p>
+    <div class="mock">
+      <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">.../tree/main/assets</div></div>
+      <div class="body">
+        <div class="row"><span class="file">📁 assets</span><span class="btn gray">Add file ▾</span></div>
+        <span class="callout">👆 Vyber „Upload files“</span>
+        <div class="row" style="margin-top:14px;border:2px dashed var(--color-border);border-radius:8px;padding:24px;justify-content:center;color:#889;font-size:.85rem;">
+          ⬆️ Přetáhni sem soubor (nebo klikni a vyber z počítače)
+        </div>
+        <div class="row" style="justify-content:flex-end;margin-top:10px;"><span class="btn">Commit changes</span></div>
+      </div>
+    </div>
+    <p class="desc" style="margin-top:16px;">
+      💡 <strong>PDF náhled:</strong> u plakátu a portfolia potřebuješ
+      kromě PDF i jeho obrázkový náhled (JPG). Ten nejjednodušeji
+      získáš tak, že si plakát v Illustratoru/Photoshopu/Figmě
+      exportuješ navíc jako JPG/PNG.
+    </p>
+    <p class="desc">
+      🎬 <strong>Video:</strong> mp4 nahraj stejným způsobem do
+      <code>assets</code> (drž se pod cca 20–25 MB). Pokud je tvoje
+      animace větší, nahraj ji radši jako <em>neveřejné</em> video na
+      YouTube a použij variantu s embedem – návod je přímo jako
+      komentář v <code>index.html</code> u sekce Mikroanimace.
+    </p>
+  </div>
+</div>
+
+<!-- KROK 6 -->
+<div class="step">
+  <div class="container">
+    <div class="num-row"><span class="num">6</span><h2>Přizpůsob si vzhled (volitelné)</h2></div>
+    <p class="desc">
+      Otevři soubor <code class="tag">style.css</code> stejným způsobem
+      jako v kroku 4. Úplně nahoře je blok <code>:root</code> s barvami
+      a písmem – tam si klidně vzhled uprav podle svého stylu. Zbytek
+      souboru (rozvržení) neměň, ať web zůstane funkční a přehledný.
+    </p>
+    <div class="mock">
+      <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">.../edit/main/style.css</div></div>
+      <div class="body">
+        <textarea class="fake" readonly>:root {
+  --color-primary: #2f5d55;   /* uprav si klidně */
+  --color-secondary: #c48454;
+  --font-heading: "Poppins", sans-serif;
+}</textarea>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- KROK 7 -->
+<div class="step">
+  <div class="container">
+    <div class="num-row"><span class="num">7</span><h2>Pošli odkaz učiteli</h2></div>
+    <p class="desc">
+      Zkopíruj adresu svého webu (z kroku 3, tvar
+      <code>tvoje-jmeno.github.io/nazev-projektu</code>) a pošli ji
+      učiteli přes MS Teams. Přidá ji k tvému jménu na
+      <a href="index.html">rozcestníku projektu</a>, aby se na tvůj web
+      dalo proklikat odkudkoliv.
+    </p>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="step">
+  <div class="container">
+    <h2>Nejčastější problémy</h2>
+
+    <details class="faq">
+      <summary>Web hlásí „404 – There isn't a GitHub Pages site here“</summary>
+      <p>Nejčastěji to znamená, že GitHub Pages ještě nejsou zapnuté
+      (krok 3), nebo že od zapnutí ještě neuplynula ani minuta – zkus
+      stránku za chvíli obnovit (Ctrl/Cmd + Shift + R).</p>
+    </details>
+
+    <details class="faq">
+      <summary>Nahrál/a jsem obrázek, ale na webu se nezobrazuje</summary>
+      <p>Zkontroluj, že název souboru v <code>assets</code> přesně
+      odpovídá tomu, co je v <code>index.html</code> za <code>src=</code>
+      (GitHub rozlišuje velká a malá písmena i diakritiku – radši se
+      jí v názvech souborů úplně vyhni).</p>
+    </details>
+
+    <details class="faq">
+      <summary>Video se nepřehrává / je moc velké</summary>
+      <p>Zkomprimuj mp4 (např. přes HandBrake, nebo export s nižším
+      datovým tokem) na cca 15–25 MB, případně použij variantu
+      s YouTube embedem (neveřejné video) popsanou v kroku 5.</p>
+    </details>
+
+    <details class="faq">
+      <summary>Omylem jsem něco smazal/a nebo pokazil/a</summary>
+      <p>Nic se neděje – GitHub si pamatuje historii změn. V repozitáři
+      klikni na <strong>Commits</strong> a najdi verzi souboru předtím,
+      než jsi ji upravil/a.</p>
+    </details>
+  </div>
+</div>
+
+<div class="cta-end">
+  <a class="btn-big" href="index.html">← Zpět na rozcestník projektu</a>
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    SPŠE a VOŠ Pardubice · obor IT – Počítačová grafika · 3.G · 2026/2027
+  </div>
+</footer>
+
+</body>
+</html>
