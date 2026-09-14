@@ -65,15 +65,15 @@ code{background:rgba(23,49,58,.07);padding:1px 6px;border-radius:3px}
 .brand .brand-sub{border-left:1px solid var(--line);padding-left:18px;font-size:14px;line-height:1.3;color:var(--ink-soft)}
 .brand .brand-sub strong{display:block;color:var(--ink);font-weight:600;font-size:15px}
 .main-nav ul{list-style:none;margin:0;padding:0;display:flex;gap:4px;align-items:center}
-.main-nav a{display:block;padding:10px 14px;font-weight:500;font-size:16px;text-decoration:none;color:var(--ink);border-bottom:3px solid transparent}
+.main-nav a{display:block;padding:10px 11px;font-weight:500;font-size:15.5px;white-space:nowrap;text-decoration:none;color:var(--ink);border-bottom:3px solid transparent}
 .main-nav a:hover,.main-nav a.active{border-bottom-color:var(--water)}
 .main-nav .back{display:flex;align-items:center;gap:6px;margin-left:8px;border:1px solid var(--line);border-radius:4px;padding:8px 12px}
 .main-nav .back:hover{border-color:var(--water)}
 .main-nav .back svg{width:14px;height:14px}
 .nav-toggle{display:none;background:none;border:1px solid var(--line);border-radius:4px;padding:8px 12px;font:600 15px var(--font);color:var(--ink);cursor:pointer;align-items:center;gap:8px}
 .nav-toggle svg{width:20px;height:20px}
-@media (max-width:1180px){.brand .brand-sub{display:none}}
-@media (max-width:1060px){
+@media (max-width:1400px){.brand .brand-sub{display:none}}
+@media (max-width:1120px){
   .nav-toggle{display:inline-flex}
   .main-nav{position:absolute;left:0;right:0;top:100%;background:#fff;border-bottom:1px solid var(--line);display:none}
   .main-nav.open{display:block}
@@ -271,6 +271,65 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 .status{font-size:14px;color:var(--ink-soft);min-height:1.4em}
 .range.hue{margin-top:16px}
 
+/* ---------- Psychologie barev ---------- */
+.psy{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(24px,4vw,56px);align-items:start}
+@media (max-width:900px){.psy{grid-template-columns:1fr}}
+.mode{display:inline-flex;border:1px solid var(--line);border-radius:4px;overflow:hidden;margin-bottom:16px;background:#fff}
+.mode button{font:600 14.5px var(--font);padding:9px 14px;border:0;background:none;color:var(--ink);cursor:pointer}
+.mode button[aria-selected=true]{background:var(--ink);color:#fff}
+.chips{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:8px}
+.chips button{display:flex;flex-direction:column;align-items:center;gap:7px;padding:10px 6px;border:1px solid var(--line);border-radius:6px;background:#fff;font:600 13.5px var(--font);color:var(--ink);cursor:pointer;transition:transform .2s var(--ease),border-color .2s,box-shadow .2s}
+.chips button i{width:40px;height:40px;border-radius:50%;background:var(--c);box-shadow:inset 0 0 0 1px rgba(23,49,58,.18);transition:transform .25s var(--ease)}
+.chips button:hover{transform:translateY(-2px);border-color:var(--water)}
+.chips button[aria-pressed=true]{border-color:var(--ink);box-shadow:0 0 0 2px var(--ink)}
+.chips button[aria-pressed=true] i{transform:scale(1.12)}
+.emo{display:grid;gap:8px}
+.chips[hidden],.emo[hidden]{display:none}
+.emo button{text-align:left;padding:12px 14px;border:1px solid var(--line);border-radius:6px;background:#fff;font:600 15px var(--font);color:var(--ink);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;transition:border-color .2s,box-shadow .2s}
+.emo button:hover{border-color:var(--water)}
+.emo button[aria-pressed=true]{border-color:var(--ink);box-shadow:0 0 0 2px var(--ink)}
+.emo .dots{display:flex;gap:3px;flex:none}
+.emo .dots i{width:14px;height:14px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(23,49,58,.18)}
+.psy-panel{background:#fff;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.psy-head{padding:26px 28px;color:#fff;position:relative;transition:background-color .5s var(--ease);min-height:140px;display:flex;flex-direction:column;justify-content:flex-end}
+.psy-head.light{color:var(--ink)}
+.psy-head h3{margin:0;font-size:38px;line-height:1}
+.psy-head small{display:block;font:500 14px var(--font);opacity:.85;margin-top:6px}
+.psy-head .hexv{position:absolute;right:20px;top:18px;font:600 12.5px var(--mono);opacity:.85}
+.psy-body{padding:20px 28px 24px;display:grid;gap:16px}
+.tagrow h4{margin:0 0 8px;font:700 13px var(--cond);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tags span{font-size:14px;padding:5px 11px;border-radius:20px;background:rgba(23,49,58,.07);animation:tagin .4s var(--ease) both}
+.tags.neg span{background:rgba(181,85,47,.12);color:#7A3A20}
+.tags.pos span{background:rgba(78,122,69,.13);color:#2F5A28}
+@keyframes tagin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.psy-body .use{margin:0;font-size:15.5px;padding:14px 16px;border-left:4px solid var(--c,var(--deep));background:rgba(23,49,58,.04)}
+.psy-body .use b{font-family:var(--cond);font-size:17px;letter-spacing:.02em}
+.mini{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mini .post{aspect-ratio:1;border-radius:4px;padding:14px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid var(--line);transition:background-color .5s var(--ease),color .5s}
+.mini .post b{font:800 clamp(18px,2vw,26px)/1 var(--cond);text-wrap:balance}
+.mini .post small{font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;opacity:.8}
+.mini .post .dot{width:22px;height:22px;border-radius:50%;background:var(--a)}
+@media (max-width:520px){.mini{grid-template-columns:1fr}.psy-head h3{font-size:30px}}
+.research{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.4vw,28px);margin-top:clamp(40px,5vw,60px)}
+@media (max-width:860px){.research{grid-template-columns:1fr}}
+.study{padding:22px 0 0;border-top:1px solid var(--ink)}
+.study h3{font-size:22px}
+.study .big{display:block;font:800 40px/1 var(--cond);color:var(--deep);margin:4px 0 10px}
+.study p{margin:0 0 8px;font-size:15px;color:var(--ink-soft)}
+.study cite{display:block;font-style:normal;font-size:13px;color:var(--ink-soft);margin-top:8px}
+.study cite a{font-weight:600}
+.culture{margin-top:clamp(36px,5vw,52px);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+@media (max-width:1000px){.culture{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.culture{grid-template-columns:1fr}}
+.cult{background:#fff;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.cult .top{height:10px;background:var(--c)}
+.cult div{padding:14px 16px}
+.cult b{display:block;font:700 19px var(--cond);margin-bottom:4px}
+.cult p{margin:0;font-size:14px;color:var(--ink-soft)}
+.cult p+p{margin-top:5px}
+.cult em{font-style:normal;font-weight:600;color:var(--ink)}
+
 /* ---------- Kampaň ---------- */
 .rules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.4vw,28px)}
 @media (max-width:860px){.rules{grid-template-columns:1fr}}
@@ -393,8 +452,9 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
         <li><a href="#oko">Oko</a></li>
         <li><a href="#michani">Míchání</a></li>
         <li><a href="#modely">Modely</a></li>
-        <li><a href="#hsb">Odstín a sytost</a></li>
+        <li><a href="#hsb">HSB</a></li>
         <li><a href="#schemata">Schémata</a></li>
+        <li><a href="#psychologie">Psychologie</a></li>
         <li><a href="#kampan">Kampaň</a></li>
         <li><a href="#soubory">Soubory</a></li>
         <li><a class="back" href="../index.html" title="Zpět na rozcestník projektu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>Rozcestník</a></li>
@@ -718,11 +778,77 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
     </div>
   </section>
 
-  <!-- KAMPAŇ -->
-  <section class="section white" id="kampan">
+  <!-- PSYCHOLOGIE -->
+  <section class="section white" id="psychologie">
     <div class="wrap">
       <div class="section-head reveal">
-        <h2><span class="kicker">6 · Od teorie k zadání</span>Paleta pro vaši kampaň</h2>
+        <h2><span class="kicker">6 · Co barva říká</span>Psychologie barev</h2>
+        <p>Barva je jedna z nejrychlejších forem neverbální komunikace: mozek ji rozezná dřív než tvar, a během zlomku vteřiny vzbudí emoci a ovlivní chování. Proto se barvy kampaně nevybírají podle vkusu, ale podle cílové skupiny – podle významu, který chcete vyjádřit, a emoce, kterou má vizuál vzbudit. Slovník níže shrnuje asociace, které u většiny lidí fungují; ne u všech a ne všude.</p>
+      </div>
+      <div class="psy">
+        <div class="reveal">
+          <div class="mode" role="tablist" aria-label="Způsob výběru">
+            <button type="button" role="tab" id="modeColor" aria-selected="true">Podle barvy</button>
+            <button type="button" role="tab" id="modeEmo" aria-selected="false">Podle emoce</button>
+          </div>
+          <div class="chips" id="chips"></div>
+          <div class="emo" id="emo" hidden></div>
+          <p style="font-size:14px;color:var(--ink-soft);margin:14px 0 0">Kliknutím vyberte barvu nebo emoci. Asociace vycházejí z knihy Tomáše Vachudy <em>Vstup do světa logotvorby</em> a z výukové knihy Věry Vaňáskové.</p>
+        </div>
+        <div class="psy-panel reveal d1">
+          <div class="psy-head" id="psyHead"><span class="hexv" id="psyHex"></span><h3 id="psyName"></h3><small id="psySub"></small></div>
+          <div class="psy-body">
+            <div class="tagrow"><h4>Pozitivní asociace</h4><div class="tags pos" id="psyPos"></div></div>
+            <div class="tagrow"><h4>Negativní asociace</h4><div class="tags neg" id="psyNeg"></div></div>
+            <p class="use" id="psyUse"></p>
+            <div class="mini" id="psyMini"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="research">
+        <div class="study reveal">
+          <h3>Emoce barev jsou z velké části univerzální</h3>
+          <span class="big">30 zemí</span>
+          <p>Studie Domicele Jonauskaite a kol. (2020) se ptala 4 598 lidí ve 30 zemích a 22 jazycích, jaké emoce si spojují s dvanácti barvami. Čtrnáct dvojic platilo všude: černá – smutek, strach; červená – láska i vztek; žlutá a oranžová – radost; růžová – láska; šedá – smutek a zklamání; bílá – úleva.</p>
+          <p>Všech 30 národů se shodlo, že nejvíce „emoční“ jsou černá a červená a nejméně hnědá. Rozdíly se objevily tam, kde do hry vstupuje kultura a jazyk: Číňané spojovali s bílou smutek (barva pohřbů), Řekové s fialovou, Egypťané jako jediní nespojili žlutou s radostí.</p>
+          <cite>Jonauskaite et al., Psychological Science 2020 – <a href="https://journals.sagepub.com/doi/10.1177/0956797620948810" target="_blank" rel="noopener">článek</a></cite>
+        </div>
+        <div class="study reveal d1">
+          <h3>Vzrušující červená, kompetentní modrá</h3>
+          <span class="big">5 osobností</span>
+          <p>Labrecque a Milne (2012) mapovali barvy na pět dimenzí „osobnosti značky“: červená se pojí se vzrušením, modrá s kompetencí a důvěrou. Sytost a světlost pak rys zesilují nebo tlumí – syté, tmavší barvy působí razantně a robustně, světlé a méně syté upřímně a jemně.</p>
+          <p>Proto korporace, banky a instituce volí modrou, zatímco slevy, fast food a sport pracují s červenou a žlutou – a proč se v jídle skoro nikdy nepotkáte s modrým logem: modrá tlumí chuť k jídlu.</p>
+          <cite>Labrecque &amp; Milne, Journal of the Academy of Marketing Science 2012 – <a href="https://link.springer.com/article/10.1007/s11747-010-0245-y" target="_blank" rel="noopener">článek</a></cite>
+        </div>
+        <div class="study reveal d2">
+          <h3>Pozor na „fakta“ z internetu</h3>
+          <span class="big">kontext</span>
+          <p>Přehledová studie Elliota a Maiera (2014) shrnuje, že barva prokazatelně ovlivňuje pozornost, hodnocení i chování – ale obor je mladý, řada starších pokusů měla metodické chyby a účinek silně závisí na kontextu. Červená na dresu znamená něco jiného než červená na testu.</p>
+          <p>Tvrzení typu „90 % rozhodnutí o nákupu dělá barva“ kolují po webu bez spolehlivého zdroje. Berte slovník barev jako vodítko, které ověříte u své cílové skupiny – ne jako zákon.</p>
+          <cite>Elliot &amp; Maier, Annual Review of Psychology 2014 – <a href="https://www.annualreviews.org/content/journals/10.1146/annurev-psych-010213-115035" target="_blank" rel="noopener">článek</a></cite>
+        </div>
+      </div>
+
+      <h3 style="margin-top:clamp(36px,5vw,52px);font-size:26px" class="reveal">Stejná barva, jiná kultura</h3>
+      <div class="culture">
+        <div class="cult reveal" style="--c:#F4F4F0"><div class="top"></div><div><b>Bílá</b><p><em>Evropa:</em> čistota, svatba, nový začátek, úleva.</p><p><em>Čína a části východní Asie:</em> tradiční barva smutku a pohřbů.</p></div></div>
+        <div class="cult reveal d1" style="--c:#C8102E"><div class="top"></div><div><b>Červená</b><p><em>Evropa:</em> láska, ale i nebezpečí, varování, stop.</p><p><em>Čína:</em> tradičně štěstí a oslava – svatby, Nový rok, dary v červených obálkách.</p></div></div>
+        <div class="cult reveal d2" style="--c:#6B3FA0"><div class="top"></div><div><b>Fialová</b><p><em>Evropa:</em> luxus, majestát, tajemno, kreativita.</p><p><em>Řecko (a některé katolické tradice):</em> smutek a půst.</p></div></div>
+        <div class="cult reveal d3" style="--c:#F2C230"><div class="top"></div><div><b>Žlutá</b><p><em>Většina světa:</em> radost, slunce, optimismus.</p><p><em>Egypt:</em> jediná země ve studii, kde žlutá s radostí spojována nebyla.</p></div></div>
+      </div>
+      <div class="note blue">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#0F5673" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+        <p><strong>Jak s tím pracovat v kampani:</strong> nejdřív napište emoci, kterou má vizuál vzbudit (naléhavost? důvěru? naději?), teprve pak vybírejte barvu. Ověřte ji na pěti lidech z cílové skupiny jednou otázkou: „Co cítíš, když to vidíš?“ Pokud se odpovědi rozcházejí s vaším záměrem, barvu měňte, ne diváky.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- KAMPAŇ -->
+  <section class="section" id="kampan">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <h2><span class="kicker">7 · Od teorie k zadání</span>Paleta pro vaši kampaň</h2>
         <p>V etapě Vizuální identita odevzdáváte barevnou paletu v HEX a CMYK. Tady jsou tři pravidla, která oddělují paletu profesionální od té „nějaké“, a nástroj na ověření kontrastu.</p>
       </div>
       <div class="rules">
@@ -775,7 +901,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
   <section class="section alt" id="zajimavosti">
     <div class="wrap">
       <div class="section-head reveal">
-        <h2><span class="kicker">7 · Pro zvídavé</span>Barvy, které mají příběh</h2>
+        <h2><span class="kicker">8 · Pro zvídavé</span>Barvy, které mají příběh</h2>
         <p>Šest karet z podkladů k lekci. Kliknutím kartu otočíte. Hodí se jako inspirace pro claim, moodboard i pro chvíli, kdy potřebujete v prezentaci zaujmout.</p>
       </div>
       <div class="facts">
@@ -793,7 +919,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
   <section class="section" id="kviz">
     <div class="wrap">
       <div class="section-head reveal">
-        <h2><span class="kicker">8 · Ověřte si</span>Šest otázek na závěr</h2>
+        <h2><span class="kicker">9 · Ověřte si</span>Sedm otázek na závěr</h2>
         <p>Rychlá kontrola před tím, než se pustíte do vlastní palety. Odpovědi se vyhodnotí hned.</p>
       </div>
       <div class="quiz reveal" id="quiz"></div>
@@ -805,7 +931,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
   <section class="section white" id="soubory">
     <div class="wrap">
       <div class="section-head reveal">
-        <h2><span class="kicker">9 · Podklady</span>Výukové soubory ke stažení</h2>
+        <h2><span class="kicker">10 · Podklady</span>Výukové soubory ke stažení</h2>
         <p>Všechny podklady k této lekci jsou ve sdílené složce na školním OneDrive. Otevřete je, přečtěte a použijte jako zdroj pro svou vizuální identitu.</p>
       </div>
       <div class="files">
@@ -824,6 +950,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
           <li><svg viewBox="0 0 34 34" fill="none"><rect x="5" y="3" width="24" height="28" rx="3" fill="#fff" stroke="#17313A" stroke-width="1.6"/><path d="M11 21l4-7 4 4 4-8" stroke="#4E7A45" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>Jak moderní technologie pracují s barvami?</b><span>Jan Lebeda – Vantablack, barva olo a strukturální barva motýlích křídel.</span></div></li>
           <li><svg viewBox="0 0 34 34" fill="none"><rect x="5" y="3" width="24" height="28" rx="3" fill="#fff" stroke="#17313A" stroke-width="1.6"/><path d="M12 22c0-6 10-6 10-12" stroke="#7B2D8E" stroke-width="1.8" stroke-linecap="round"/></svg><div><b>Barvová synestezie – Jak chutná písmeno K</b><span>Anna Koucká – když se smysly prolínají a středa je zelená.</span></div></li>
           <li><svg viewBox="0 0 34 34" fill="none"><rect x="5" y="3" width="24" height="28" rx="3" fill="#fff" stroke="#17313A" stroke-width="1.6"/><circle cx="14" cy="14" r="4" fill="#F2C230"/><circle cx="20" cy="14" r="4" fill="#38C4F0" fill-opacity=".8"/><circle cx="17" cy="20" r="4" fill="#B5552F" fill-opacity=".8"/></svg><div><b>Design charakterů – výuková kniha (Věra Vaňásková, 4.G)</b><span>Maturitní práce absolventky naší školy. Kapitola 02 Barvy: šest barevných schémat, sytost, odstín, tón a psychologie barev.</span></div></li>
+          <li><svg viewBox="0 0 34 34" fill="none"><rect x="5" y="3" width="24" height="28" rx="3" fill="#fff" stroke="#17313A" stroke-width="1.6"/><path d="M11 22l6-11 6 11z" fill="#0F5673"/><circle cx="17" cy="19" r="2.5" fill="#F2C230"/></svg><div><b>Vstup do světa logotvorby (Tomáš Vachuda)</b><span>Kapitola Barvy: psychologie a význam barev, RGB vs. CMYK vs. Pantone a praktické tipy k barvám v logu a identitě.</span></div></li>
         </ul>
       </div>
     </div>
@@ -1286,6 +1413,64 @@ const SCHEMES = [
   let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(drawWheel, 200); });
 })();
 
+/* ---------- Psychologie barev ---------- */
+const BARVY = [
+  {n:"Červená", hex:"#C8102E", sub:"nejemočnější barva – všude na světě", pos:["vášeň","láska","energie","síla","akce","odvaha","chuť k jídlu","naléhavost"], neg:["nebezpečí","agrese","válka","hluk","impulzivnost","provokace"], use:"<b>V kampani:</b> varování a výzva k akci – přehřátí města, bleskové sucho, „teď, nebo nikdy“. Zvedá tep a tlak, proto jen jako akcent; celočervený plakát unaví za pár vteřin.", txt:"#fff", acc:"#F2C230"},
+  {n:"Oranžová", hex:"#E8792B", sub:"teplo, slunce, přátelská energie", pos:["kreativita","nadšení","přátelství","teplo","slunce","mládí","dostupnost","šťavnatost"], neg:["pronikavost","dětskost","levnost","neklid"], use:"<b>V kampani:</b> spálená krajina, žár a horko – ale i přátelský tón výzvy („pojďte s námi“). Dobře snáší kombinaci s hlubokou modrou: sucho × voda v jednom obrazu.", txt:"#fff", acc:"#0F5673"},
+  {n:"Žlutá", hex:"#F2C230", sub:"radost, optimismus – a pozor", pos:["radost","optimismus","naděje","hravost","intelekt","otevřenost","zvědavost"], neg:["opatrnost","hazard","ustrašenost","zbabělost","nemoc","levnost"], use:"<b>V kampani:</b> slunce, úroda, výstraha (žluté značení, vosy, cedule). Na bílém pozadí se ztrácí a v tisku bledne – na tmavém pozadí naopak září. Skvělý akcent, špatná hlavní barva.", txt:"#17313A", acc:"#17313A"},
+  {n:"Zelená", hex:"#4E7A45", sub:"příroda, zdraví, růst – a klišé", pos:["zdraví","vitalita","příroda","růst","obnova","svěžest","rovnováha","život"], neg:["závist","nemoc","jed","nezkušenost","nuda","greenwashing"], use:"<b>V kampani:</b> nejočekávanější „eko“ barva – a proto nejméně přesvědčivá. Pokud ji použijete, ať je odvozená z reálné krajiny (mech, olivová, tlumená), ne z reklamního katalogu. Zelená jako důkaz, ne jako slib.", txt:"#fff", acc:"#C69A5B"},
+  {n:"Modrá", hex:"#0F5673", sub:"voda, důvěra, kompetence", pos:["voda","klid","důvěra","spolehlivost","profesionalita","bezpečí","vědomosti","odpočinek"], neg:["chlad","sterilita","smutek","odstup","tlumí chuť k jídlu"], use:"<b>V kampani:</b> voda v krajině, data, instituce, které mají být důvěryhodné (obec, škola, správce povodí). Celosvětově nejoblíbenější barva – a přesně proto potřebuje odvážného partnera: okr, oranž, hlínu.", txt:"#fff", acc:"#38C4F0"},
+  {n:"Fialová", hex:"#6B3FA0", sub:"tajemno, luxus, představivost", pos:["majestátnost","tajemnost","luxus","kreativita","moudrost","intuice","fantazie"], neg:["povýšenost","náladovost","umělost","v Řecku smutek"], use:"<b>V kampani:</b> málo obvyklá, proto upoutá – noc, bouře, něco jiného než ostatní. Hodí se pro téma, které chce vypadat neotřele; hůř se tiskne (mimo gamut CMYK).", txt:"#fff", acc:"#F2C230"},
+  {n:"Růžová", hex:"#E27BA8", sub:"něžnost, péče, hravost", pos:["citlivost","něžnost","laskavost","soucit","romantika","hravost","porozumění"], neg:["nevyspělost","křehkost","sentiment","nevážnost"], use:"<b>V kampani:</b> měkké, lidské téma – komunita, péče o studánku, sousedská pomoc v krizi. Tlumená růžová se sytou modrozelenou působí současně a překvapivě.", txt:"#17313A", acc:"#17313A"},
+  {n:"Hnědá", hex:"#8A5A34", sub:"půda, tradice, nejméně emoční barva", pos:["země","půda","tradice","venkov","solidnost","přirozenost","stálost","spolehlivost"], neg:["drsnost","špína","nuda","prostota","mlčenlivost"], use:"<b>V kampani:</b> půda, eroze, kraftový karton – barva, která je v našem projektu doslova materiálem. Nikoho neurazí, ale sama nikoho nenadchne; potřebuje vodu (azur) nebo slunce (žlutou).", txt:"#fff", acc:"#38C4F0"},
+  {n:"Černá", hex:"#17313A", sub:"autorita, elegance, vážnost", pos:["autorita","elegance","prestiž","tradice","síla","styl","formálnost"], neg:["smutek","strach","zlo","negativita","hrozba","smrt"], use:"<b>V kampani:</b> text, hloubka, vážnost tématu. Spolu s červenou nejemočnější barva – přebytek černé mění výzvu k akci v beznaděj. Hluboká modročerná (jako na tomto webu) je měkčí než čistá černá.", txt:"#fff", acc:"#38C4F0"},
+  {n:"Bílá", hex:"#F7F7F3", sub:"čistota, prostor, úleva", pos:["čistota","jednoduchost","mír","lehkost","vzdušnost","úleva","jasnost"], neg:["sterilita","chlad","prázdnota","v Číně smutek a pohřby"], use:"<b>V kampani:</b> prostor k nadechnutí – čistá voda, vzduch, ticho. Bílá plocha kolem sdělení je nejlevnější a nejúčinnější způsob, jak mu dodat váhu.", txt:"#17313A", acc:"#0F5673"},
+  {n:"Šedá", hex:"#8A9AA0", sub:"neutralita, beton, nejistota", pos:["neutralita","praktičnost","stabilita","nadčasovost","profesionalita","střízlivost"], neg:["nezajímavost","nejistota","smutek","zklamání","chlad"], use:"<b>V kampani:</b> beton, asfalt, tepelný ostrov, stav „před“. Ideální protihráč pro barvu opatření: šedý dvůr → modrozelený dvůr. Sama o sobě nikdy nevyzývá k ničemu.", txt:"#17313A", acc:"#B5552F"}
+];
+const EMOCE = [
+  {n:"Naléhavost, varování", c:["#C8102E","#E8792B","#F2C230","#17313A"], t:"Červená, oranžová a žlutá s černou – kombinace výstražných cedulí. Funguje okamžitě, ale rychle unaví; vyhraďte ji pro jeden prvek (číslo, titulek, tlačítko)."},
+  {n:"Důvěra, odbornost", c:["#0F5673","#17313A","#8A9AA0","#F7F7F3"], t:"Tmavá modrá s neutrály. Barvy institucí, dat a map – hodí se pro fakta o suchu, vodě a energii, která má divák brát vážně."},
+  {n:"Klid, obnova, zdraví", c:["#4E7A45","#38C4F0","#F7F7F3","#C69A5B"], t:"Tlumená zeleň, azur a hodně bílé. Svět „po opatření“: tůň, stín stromu, chladnější ulice. Pozor na zelené klišé – zeleň odvoďte z fotografie lokality."},
+  {n:"Naděje, radost", c:["#F2C230","#E8792B","#38C4F0","#F7F7F3"], t:"Žlutá a oranžová se světlou modrou. Slunce, které tentokrát neškodí. Dobré pro sociální sítě a mikroanimace; v tisku hlídejte gamut žluté."},
+  {n:"Tradice, půda, venkov", c:["#8A5A34","#C69A5B","#4E7A45","#17313A"], t:"Hnědá, okr a tmavá zeleň. Kraftový karton, dřevo, zemědělská krajina, pramen. Solidní a důvěryhodné; oživte jednou kapkou azuru."},
+  {n:"Chlad, prázdnota, „před“", c:["#8A9AA0","#0F5673","#F7F7F3","#17313A"], t:"Šedá, studená modrá, bílá. Beton, tepelný ostrov, vyschlé koryto. Ideální jako první polovina srovnání před/po – druhou polovinu pak zahřejte."}
+];
+(function psychologie(){
+  const chips = $("#chips"), emo = $("#emo"), head = $("#psyHead");
+  let mode = "color", cur = 4, curE = 0;
+  chips.innerHTML = BARVY.map((b, i) => `<button type="button" style="--c:${b.hex}" aria-pressed="${i===cur}"><i></i>${b.n}</button>`).join("");
+  emo.innerHTML = EMOCE.map((e, i) => `<button type="button" aria-pressed="${i===curE}"><span>${e.n}</span><span class="dots">${e.c.map(c => `<i style="background:${c}"></i>`).join("")}</span></button>`).join("");
+  const isLight = h => luminance(...hexToRgb(h)) > .45;
+  function show(){
+    if (mode === "color"){
+      const b = BARVY[cur];
+      head.style.background = b.hex; head.classList.toggle("light", isLight(b.hex));
+      $("#psyHex").textContent = b.hex; $("#psyName").textContent = b.n; $("#psySub").textContent = b.sub;
+      $("#psyPos").innerHTML = b.pos.map((t, i) => `<span style="animation-delay:${i*40}ms">${t}</span>`).join("");
+      $("#psyNeg").innerHTML = b.neg.map((t, i) => `<span style="animation-delay:${i*40}ms">${t}</span>`).join("");
+      $("#psyUse").innerHTML = b.use; $("#psyUse").style.setProperty("--c", b.hex);
+      $("#psyMini").innerHTML = `<div class="post" style="background:${b.hex};color:${b.txt};--a:${b.acc}"><small>plakát · dominantní</small><b>Voda patří do krajiny</b><span class="dot"></span></div><div class="post" style="background:#F7F7F3;color:#17313A;--a:${b.hex}"><small>plakát · akcent</small><b style="color:${b.hex}">Voda patří do krajiny</b><span class="dot"></span></div>`;
+      $$("#chips button").forEach((x, i) => x.setAttribute("aria-pressed", i === cur));
+    } else {
+      const e = EMOCE[curE];
+      head.style.background = `linear-gradient(100deg, ${e.c.join(",")})`; head.classList.toggle("light", isLight(e.c[0]) && isLight(e.c[1]));
+      $("#psyHex").textContent = e.c.join("  "); $("#psyName").textContent = e.n; $("#psySub").textContent = "doporučená kombinace pro tuto emoci";
+      const names = e.c.map(h => (BARVY.find(b => b.hex === h) || {n:"okr"}).n.toLowerCase());
+      $("#psyPos").innerHTML = names.map((t, i) => `<span style="animation-delay:${i*40}ms">${t}</span>`).join("");
+      $("#psyNeg").innerHTML = `<span>čeho se vyvarovat: ${e.n === "Důvěra, odbornost" ? "zářivé barvy a přechody" : e.n === "Naléhavost, varování" ? "víc než jeden červený prvek" : "sytost přes 90 % u velkých ploch"}</span>`;
+      $("#psyUse").innerHTML = "<b>V kampani:</b> " + e.t; $("#psyUse").style.setProperty("--c", e.c[0]);
+      const dark = e.c.find(h => !isLight(h)) || "#17313A", light = e.c.find(h => isLight(h)) || "#F7F7F3";
+      $("#psyMini").innerHTML = `<div class="post" style="background:${e.c[0]};color:${isLight(e.c[0]) ? "#17313A" : "#fff"};--a:${e.c[1]}"><small>varianta A</small><b>Voda patří do krajiny</b><span class="dot"></span></div><div class="post" style="background:${light};color:${dark};--a:${e.c[1]}"><small>varianta B</small><b>Voda patří do krajiny</b><span class="dot"></span></div>`;
+      $$("#emo button").forEach((x, i) => x.setAttribute("aria-pressed", i === curE));
+    }
+  }
+  chips.addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; cur = [...chips.children].indexOf(b); show(); });
+  emo.addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; curE = [...emo.children].indexOf(b); show(); });
+  $("#modeColor").addEventListener("click", () => { mode = "color"; chips.hidden = false; emo.hidden = true; $("#modeColor").setAttribute("aria-selected", true); $("#modeEmo").setAttribute("aria-selected", false); show(); });
+  $("#modeEmo").addEventListener("click", () => { mode = "emo"; chips.hidden = true; emo.hidden = false; $("#modeColor").setAttribute("aria-selected", false); $("#modeEmo").setAttribute("aria-selected", true); show(); });
+  show();
+})();
+
 /* ---------- Kontrast ---------- */
 (function kontrast(){
   const fg = $("#cFg"), bg = $("#cBg"), demo = $("#cDemo");
@@ -1311,6 +1496,7 @@ const KVIZ = [
   {q:"Chcete stejný odstín, jen „bledší“ (méně křiklavý). Kterou vlastnost snížíte?", o:["Odstín","Sytost","Jas","Kontrast"], a:1, w:"Sytost je čistota barvy. Snížením sytosti barva bledne do šedé či bílé, odstín zůstává."},
   {q:"Které schéma tvoří na kole obdélník ze dvou doplňkových dvojic?", o:["Triadické","Rozdělené doplňkové","Tetradické","Analogické"], a:2, w:"Tetradické = čtyři barvy, dva páry doplňkových. Nejbohatší, ale nejsnáz sklouzne do chaosu."},
   {q:"Proč se Lab používá jako referenční („překladový“) model?", o:["Má nejmenší gamut, takže se vejde všude","Je nezávislý na zařízení a obsáhne celé viditelné spektrum","Používá ho každý monitor","Má jen dvě složky"], a:1, w:"RGB i CMYK závisejí na konkrétním zařízení. Lab je definován podle lidského vidění, proto přes něj správa barev převádí mezi zařízeními."},
+  {q:"Které dvě barvy označili lidé ve všech 30 zemích studie za nejvíce „emoční“?", o:["Modrá a zelená","Černá a červená","Žlutá a oranžová","Bílá a šedá"], a:1, w:"Jonauskaite a kol. (2020): černá (smutek, strach) a červená (láska i vztek) jsou všude nejemočnější, hnědá nejméně. Proto s nimi v kampani šetřete – a proto fungují jako akcent."},
   {q:"Sytá červená na syté zelené je špatně čitelná. Co je hlavní důvod?", o:["Odstíny jsou příliš blízko sebe","Obě barvy mají skoro stejnou světlost","Zelená je pro oko neviditelná","Červená se špatně tiskne"], a:1, w:"Čitelnost dělá rozdíl ve světlosti, ne v odstínu. Navíc asi 10 % mužů tuto dvojici nerozliší vůbec."}
 ];
 (function kviz(){
