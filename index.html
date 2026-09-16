@@ -428,7 +428,15 @@ body.rezim-upravy .edit-banner{display:flex}
             <span class="go">Otevřít lekci <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
           </a>
         </li>
-        <li class="soon"><span class="num">Lekce 2</span><strong>Moodboard</strong><p>Fotografie, vzorník barev, písmo, textury a styl ilustrací.</p><span class="badge">Připravujeme</span></li>
+        <li class="feat">
+          <a href="vyuka/02-moodboard.html">
+            <span class="num">Lekce 2 · Vizuální směr</span>
+            <strong>Moodboard<small>Anatomie moodboardu · směr pro vaše téma · rozvržení 16 : 9 · export z Adobe do PDF 1920 × 1080</small></strong>
+            <p>Interaktivní lekce: porovnejte dvě nálady jednoho rozvržení, nechte si navrhnout paletu, písmo a textury pro své téma, stáhněte šablonu, najděte šest chyb a vyexportujte prezentační PDF.</p>
+            <span class="sw" aria-hidden="true"><i style="background:#0F5673"></i><i style="background:#38C4F0"></i><i style="background:#7FA878"></i><i style="background:#C69A5B"></i><i style="background:#8A5A34"></i><i style="background:#D2693A"></i></span>
+            <span class="go">Otevřít lekci <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a>
+        </li>
         <li class="soon"><span class="num">Lekce 3</span><strong>Animace a sociální sítě</strong><p>Mikroanimace koloběhu vody, posty 1:1 a stories 9:16.</p><span class="badge">Připravujeme</span></li>
         <li class="soon"><span class="num">Lekce 4</span><strong>Obal a POS/POP</strong><p>Krabička z kraftového kartonu, plakát A3, pultový stojan.</p><span class="badge">Připravujeme</span></li>
         <li class="soon"><span class="num">Lekce 5</span><strong>Webová inzerce</strong><p>Bannery podle standardů IAB a interaktivní banner „před a po“.</p><span class="badge">Připravujeme</span></li>
@@ -912,8 +920,7 @@ function init(){
   document.addEventListener("click", e => { const m=document.querySelector(".more"); if (m && m.open && !m.contains(e.target)) m.removeAttribute("open"); });
 
   // proužky palety u výukové lekce se vykreslí, jakmile se karta objeví na obrazovce
-  const feat = document.querySelector(".lekce .feat");
-  if (feat){ const fo = new IntersectionObserver(en => { if (en[0].isIntersecting){ feat.classList.add("in"); fo.disconnect(); } }, {threshold:.4}); fo.observe(feat); }
+  document.querySelectorAll(".lekce .feat").forEach(feat => { const fo = new IntersectionObserver(en => { if (en[0].isIntersecting){ feat.classList.add("in"); fo.disconnect(); } }, {threshold:.4}); fo.observe(feat); });
 
   const tg = $(".nav-toggle"), nav = $("#menu");
   tg.addEventListener("click", () => { const o = nav.classList.toggle("open"); tg.setAttribute("aria-expanded", o); });
