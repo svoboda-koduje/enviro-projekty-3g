@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Moodboard – výuka 2/7 | Grafika pro klima, 3.G SPŠE a VOŠ Pardubice</title>
-<meta name="description" content="Výuková lekce pro 3.G: co je moodboard, z čeho se skládá, jak najít jeho směr pro vlastní environmentální téma, jak ho rozvrhnout na plátno 16 : 9 a vyexportovat z Adobe InDesign, Illustrator nebo Photoshop jako prezentační PDF 1920 × 1080.">
+<meta name="description" content="Výuková lekce pro 3.G: co je moodboard, z čeho se skládá, jak najít jeho směr pro vlastní environmentální téma, jak ho rozvrhnout na plátno 16 : 9 a vyexportovat z Adobe After Effects, Premiere Pro nebo Photoshop jako jednoduchou animaci MP4 1920 × 1080 (Full HD).">
 <meta name="theme-color" content="#17313A">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='2' y='5' width='12' height='14' rx='1' fill='%230F5673'/%3E%3Crect x='15' y='5' width='7' height='6' rx='1' fill='%2338C4F0'/%3E%3Crect x='15' y='13' width='7' height='6' rx='1' fill='%23C69A5B'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -417,6 +417,7 @@ kbd{font:600 12.5px var(--mono);border:1px solid rgba(23,49,58,.25);border-botto
 .calc h3{color:#fff}
 .calc p{margin:0 0 14px;font-size:15px;color:rgba(255,255,255,.78)}
 .calc .in3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.calc .in4{grid-template-columns:repeat(2,minmax(0,1fr))}
 .calc label{display:flex;flex-direction:column;gap:5px;font-size:13.5px;color:rgba(255,255,255,.75)}
 .calc input{font:600 17px var(--mono);padding:9px 10px;border-radius:4px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#fff;width:100%;min-width:0}
 .calc .res{margin-top:16px;display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:14.5px}
@@ -501,10 +502,10 @@ kbd{font:600 12.5px var(--mono);border:1px solid rgba(23,49,58,.25);border-botto
       <div>
         <p class="hero-meta">Výuková lekce 2 ze 7 · podklad pro etapu <strong>Moodboard</strong></p>
         <h1>Moodboard</h1>
-        <p class="lead">Moodboard je jedna obrazovka, na které je vidět, jak bude vaše kampaň vypadat a jak se u ní lidé budou cítit – ještě dřív, než nakreslíte první plakát. V lekci si ho rozeberete na části, necháte si poradit směr pro vlastní téma a na konci ho vyexportujete z Adobe jako prezentační PDF 1920 × 1080.</p>
+        <p class="lead">Moodboard je jedna obrazovka, na které je vidět, jak bude vaše kampaň vypadat a jak se u ní lidé budou cítit – ještě dřív, než nakreslíte první plakát. V lekci si ho rozeberete na části, necháte si poradit směr pro vlastní téma a na konci ho z Adobe vyexportujete jako jednoduchou animaci MP4 1920 × 1080 (Full HD), ve které se části moodboardu postupně objeví.</p>
         <div class="btns">
           <a class="btn btn-primary" href="#smer">Najít směr pro své téma</a>
-          <a class="btn btn-ghost" href="#export">Export do PDF</a>
+          <a class="btn btn-ghost" href="#export">Export do MP4</a>
         </div>
       </div>
       <figure class="wipe reveal" style="margin:0">
@@ -597,7 +598,7 @@ kbd{font:600 12.5px var(--mono);border:1px solid rgba(23,49,58,.25);border-botto
         <li><h3>Škrtejte</h3><p>Nechte 6 až 12 obrázků se stejným světlem, barevností a úhlem pohledu. Každý musí sedět ke všem slovům z kroku 1.</p><p class="tip"><b>Test:</b> Když obrázek zakryjete, chybí něco? Ne? Pryč s ním.</p></li>
         <li><h3>Vyberte klíčový obraz</h3><p>Jedna fotografie ponese hlavní emoci a dostane největší plochu. Ostatní ji doplňují detailem.</p><p class="tip"><b>Tip:</b> Nejsilnější neznamená nejhezčí. Hledejte ten, který vyvolá reakci.</p></li>
         <li><h3>Vytáhněte paletu a písmo</h3><p>Barvy nasajte kapátkem přímo z vybraných fotek a zkontrolujte je podle lekce 1. Písmo vyzkoušejte na českém textu s háčky.</p><p class="tip"><b>Návaznost:</b> <a href="01-barevna-paleta.html#schemata">Lekce 1 – schémata a kontrast</a></p></li>
-        <li><h3>Rozvrhněte a popište</h3><p>Složte vše na plátno 1920 × 1080, přidejte kódy barev, názvy písem, klíčová slova a zdroje. Pak export do PDF.</p><p class="tip"><b>Návaznost:</b> <a href="#rozvrzeni">rozvržení</a> a <a href="#export">export</a> níže</p></li>
+        <li><h3>Rozvrhněte a popište</h3><p>Složte vše na plátno 1920 × 1080, přidejte kódy barev, názvy písem, klíčová slova a zdroje. Pak jednoduchá animace a export do MP4.</p><p class="tip"><b>Návaznost:</b> <a href="#rozvrzeni">rozvržení</a> a <a href="#export">export</a> níže</p></li>
       </ol>
     </div>
   </section>
@@ -715,82 +716,80 @@ kbd{font:600 12.5px var(--mono);border:1px solid rgba(23,49,58,.25);border-botto
   <section class="section white" id="export">
     <div class="wrap">
       <div class="section-head reveal">
-        <h2><span class="kicker">7 · Odevzdání</span>Z Adobe do PDF 1920 × 1080</h2>
-        <p>Moodboard odevzdáváte jako prezentační PDF ve Full HD. PDF nemá pixely, ale body (pt): dokument 1920 × 1080 px při 72 ppi se uloží jako stránka 1920 × 1080 pt, tedy asi 677 × 381 mm. Na obrazovce i projektoru se pak zobrazí přesně v poměru 16 : 9.</p>
+        <h2><span class="kicker">7 · Odevzdání</span>Z Adobe do MP4 1920 × 1080</h2>
+        <p>Moodboard odevzdáváte jako jednoduchou animaci ve Full HD: soubor <b>MP4</b> (kodek H.264), <b>1920 × 1080 px</b>, <b>25 snímků za sekundu</b>, délka <b>8 až 15 s</b>. Video nemá body ani ppi, jen pixely a čas – rozvržení z předchozí části zůstává, prvky moodboardu se na plátně jen postupně objeví. Nejde o efekty, jde o to, aby divák viděl části v pořadí, ve kterém je má číst: klíčová fotka, paleta, písmo, textury, slova.</p>
       </div>
       <div class="exp">
         <div class="reveal">
           <div class="tabs app-tabs" role="tablist" aria-label="Aplikace Adobe">
-            <button class="tab" role="tab" aria-selected="true" aria-controls="app-id" id="t-id"><i style="background:#9C1F57">Id</i>InDesign – doporučeno</button>
-            <button class="tab" role="tab" aria-selected="false" aria-controls="app-ai" id="t-ai" tabindex="-1"><i style="background:#B35A00">Ai</i>Illustrator</button>
+            <button class="tab" role="tab" aria-selected="true" aria-controls="app-ae" id="t-ae"><i style="background:#5B3BB0">Ae</i>After Effects – doporučeno</button>
+            <button class="tab" role="tab" aria-selected="false" aria-controls="app-pr" id="t-pr" tabindex="-1"><i style="background:#7B2E9E">Pr</i>Premiere Pro</button>
             <button class="tab" role="tab" aria-selected="false" aria-controls="app-ps" id="t-ps" tabindex="-1"><i style="background:#0A5DA8">Ps</i>Photoshop</button>
           </div>
 
-          <div class="app-panel" id="app-id" role="tabpanel" aria-labelledby="t-id">
-            <p class="lead2">InDesign je na moodboard nejlepší: obrázky vkládáte do rámečků, snadno přidáte další stránky a export do PDF je nejpřesnější. Názvy nabídek jsou v české verzi, v závorce anglická.</p>
+          <div class="app-panel" id="app-ae" role="tabpanel" aria-labelledby="t-ae">
+            <p class="lead2">After Effects je na krátkou animaci rozvržení nejpřesnější: každý prvek moodboardu je vrstva, které dáte dva klíčové snímky, a hotovo. Názvy nabídek jsou v české verzi, v závorce anglická.</p>
             <ol class="recept">
-              <li><h4>Nový dokument</h4>
-                <p><span class="menu-path">Soubor › Nový › Dokument</span> <kbd>Ctrl</kbd>+<kbd>N</kbd>, nahoře zvolte kategorii <b>Web</b> (jednotky px, barvy RGB).</p>
-                <ul><li>Šířka <b>1920 px</b>, výška <b>1080 px</b>, orientace na šířku.</li><li>Vypněte <b>Protilehlé stránky</b> <span class="en">(Facing Pages)</span>, spadávka 0 – PDF je pro obrazovku, ne pro tiskárnu.</li><li>Okraje 96 px; sloupce např. 12 s mezerou 24 px jako pomocná mřížka.</li></ul>
+              <li><h4>Připravte vrstvy</h4>
+                <p>Moodboard složte v Photoshopu (nebo Illustratoru) na plátně <b>1920 × 1080 px</b>, RGB. Každá část – klíčová fotka, každá menší fotka, paleta, písmo, textury, slova, claim – musí být <b>samostatná vrstva</b> s rozumným názvem.</p>
+                <ul><li>Rozvržení z InDesignu? Exportujte jednotlivé prvky jako PNG (<span class="menu-path">Soubor › Exportovat</span>, formát PNG, výběr) a poskládejte je do vrstev v Photoshopu.</li><li>Pomocnou šablonu z generátoru před uložením smažte, ne jen skryjte.</li></ul>
               </li>
-              <li><h4>Obrázky do rámečků</h4>
-                <p>Nakreslete rámeček, pak <span class="menu-path">Soubor › Umístit</span> <kbd>Ctrl</kbd>+<kbd>D</kbd>. Obrázek vyplňte přes <span class="menu-path">Objekt › Přizpůsobení</span> <span class="en">(Fitting › Fill Frame Proportionally)</span>.</p>
-                <ul><li>Šablonu z generátoru vložte na vlastní vrstvu, zamkněte ji a před exportem skryjte.</li></ul>
+              <li><h4>Import jako kompozice</h4>
+                <p><span class="menu-path">Soubor › Importovat › Soubor</span> <kbd>Ctrl</kbd>+<kbd>I</kbd>, vyberte PSD a v dialogu zvolte <b>Kompozice – zachovat velikosti vrstev</b> <span class="en">(Composition – Retain Layer Sizes)</span>.</p>
+                <ul><li>Zkontrolujte kompozici: <span class="menu-path">Kompozice › Nastavení kompozice</span> <kbd>Ctrl</kbd>+<kbd>K</kbd> – 1920 × 1080, <b>25 fps</b>, trvání <b>0:00:12:00</b>.</li></ul>
               </li>
-              <li><h4>Paleta a písmo</h4>
-                <p>Barvy uložte do panelu <b>Vzorník</b> <span class="en">(Swatches)</span> jako RGB a k vzorkům na plátno připište HEX, případně CMYK. Písma aktivujte přes Adobe Fonts nebo nainstalujte z Google Fonts.</p>
+              <li><h4>Dva klíčové snímky na vrstvu</h4>
+                <p>Vyberte vrstvu, stiskněte <kbd>T</kbd> (Krytí / Opacity). Na čase, kdy se má prvek objevit, klikněte na stopky, nastavte 0 %; o 15 snímků dál 100 %. Pro jemný pohyb přidejte <kbd>P</kbd> (Pozice) a posuňte začátek o 30–40 px.</p>
+                <ul><li>Vrstvy odsuňte v čase za sebou po 10–15 snímcích – pořadí = pořadí čtení: klíčová fotka, fotky, paleta, písmo, textury, slova, claim.</li><li>Označte všechny klíčové snímky, <kbd>F9</kbd> (Snadné zpomalení / Easy Ease). Pohyb bude přirozený.</li><li>Poslední 2–3 sekundy nechte celý moodboard v klidu – čtenář ho potřebuje vidět celý.</li></ul>
               </li>
               <li><h4>Kontrola</h4>
-                <p>V panelu <b>Vazby</b> <span class="en">(Links)</span> nesmí být chybějící ani upravené obrázky. Zvětšete zobrazení na 100 % a zkontrolujte ostrost fotek.</p>
+                <p>Přehrajte náhled <kbd>Mezerník</kbd>. Nic se nesmí hýbat současně příliš rychle, texty musí být čitelné na 100 %. Zkontrolujte, že se poslední prvek objeví nejpozději 3 s před koncem.</p>
               </li>
               <li><h4>Export</h4>
-                <p><span class="menu-path">Soubor › Exportovat</span> <kbd>Ctrl</kbd>+<kbd>E</kbd>, typ souboru <b>Adobe PDF (Interaktivní)</b>.</p>
-                <ul><li>Stránky: Vše. Zobrazení: Přizpůsobit stránku.</li><li>Volitelně <b>Otevřít v režimu na celou obrazovku</b> – PDF se pak spustí jako prezentace.</li><li>Na kartě Komprese: JPEG, kvalita Maximální, rozlišení <b>144 ppi</b> (výchozích 72 ppi je na kvalitních displejích rozmazaných).</li></ul>
+                <p><span class="menu-path">Soubor › Exportovat › Přidat do fronty Adobe Media Encoder</span> <span class="en">(Add to Adobe Media Encoder Queue)</span>. Formát <b>H.264</b>, předvolba <b>Match Source – High bitrate</b>.</p>
+                <ul><li>V nastavení ověřte 1920 × 1080, 25 fps, profil High, cílový datový tok 8–12 Mb/s.</li><li>Název souboru <code>prijmeni_moodboard_3G.mp4</code>, pak zelená šipka Spustit frontu.</li></ul>
               </li>
               <li><h4>Ověření</h4>
-                <p>Otevřete PDF v Acrobatu: <span class="menu-path">Soubor › Vlastnosti</span> <kbd>Ctrl</kbd>+<kbd>D</kbd> musí ukázat velikost stránky přibližně <b>677,3 × 381 mm</b>.</p>
+                <p>Přehrajte MP4 mimo Adobe (Přehrávač médií, VLC). Ve vlastnostech souboru musí být <b>1920 × 1080</b>, 25 sn./s a velikost zhruba 10–25 MB. Ověřte si to v kalkulačce vpravo.</p>
               </li>
             </ol>
           </div>
 
-          <div class="app-panel" id="app-ai" role="tabpanel" aria-labelledby="t-ai" hidden>
-            <p class="lead2">Illustrator se hodí, když na moodboardu kreslíte ikony nebo ilustrace. Každé kreslicí plátno = jedna stránka PDF.</p>
+          <div class="app-panel" id="app-pr" role="tabpanel" aria-labelledby="t-pr" hidden>
+            <p class="lead2">Premiere Pro zvolte, když After Effects neznáte. Umí to samé v jednodušší podobě: každý prvek je klip ve stopě a animujete Krytí a Pozici v panelu Ovládání efektů.</p>
             <ol class="recept">
-              <li><h4>Nový dokument</h4>
-                <p><span class="menu-path">Soubor › Nový</span> <kbd>Ctrl</kbd>+<kbd>N</kbd>, karta <b>Web</b>, vlastní rozměr <b>1920 × 1080 px</b>, barevný režim RGB.</p>
-                <ul><li>Počet kreslicích pláten <span class="en">(Artboards)</span> nastavte podle počtu snímků – např. 2: moodboard a zdroje.</li><li>V rozšířených volbách nastavte rastrové efekty na Vysoké (300 ppi), jinak budou stíny a rozostření kostrbaté.</li></ul>
+              <li><h4>Sekvence</h4>
+                <p><span class="menu-path">Soubor › Nový › Sekvence</span> <kbd>Ctrl</kbd>+<kbd>N</kbd>, karta Nastavení: režim úprav <b>Vlastní</b>, <b>1920 × 1080</b>, časová základna <b>25 fps</b>, čtvercové pixely.</p>
               </li>
-              <li><h4>Obrázky</h4>
-                <p><span class="menu-path">Soubor › Umístit</span> <kbd>Shift</kbd>+<kbd>Ctrl</kbd>+<kbd>P</kbd>. Ořez uděláte obdélníkem nad obrázkem a <span class="menu-path">Objekt › Ořezová maska › Vytvořit</span> <kbd>Ctrl</kbd>+<kbd>7</kbd>.</p>
+              <li><h4>Import vrstev</h4>
+                <p><span class="menu-path">Soubor › Importovat</span> <kbd>Ctrl</kbd>+<kbd>I</kbd>, vyberte PSD a zvolte <b>Jednotlivé vrstvy</b> <span class="en">(Individual Layers)</span>. Každou vrstvu přetáhněte do vlastní videostopy (V1 pozadí, V2 klíčová fotka…).</p>
+                <ul><li>Klipům nastavte délku tak, aby všechny končily na 12 s, začátky odstupňujte po 0,5 s.</li></ul>
               </li>
-              <li><h4>Paleta</h4>
-                <p>V panelu <b>Vzorník</b> vytvořte skupinu barev kampaně. Ikony kreslete ve stejné tloušťce tahu a se stejným zakončením.</p>
+              <li><h4>Klíčové snímky</h4>
+                <p>Vyberte klip, v panelu <b>Ovládání efektů</b> <span class="en">(Effect Controls)</span> u položky <b>Krytí</b> zapněte stopky, na začátku klipu 0 %, o 15 snímků dál 100 %. Stejně u <b>Pozice</b> pro jemný posun.</p>
+                <ul><li>Pravým tlačítkem na klíčový snímek › <b>Snadné zpomalení</b> <span class="en">(Ease In/Out)</span>.</li></ul>
               </li>
-              <li><h4>Uložení do PDF</h4>
-                <p><span class="menu-path">Soubor › Uložit jako</span> <kbd>Shift</kbd>+<kbd>Ctrl</kbd>+<kbd>S</kbd>, formát <b>Adobe PDF</b>, rozsah Vše.</p>
-                <ul><li>Předvolba <b>[Vysoká kvalita tisku]</b> <span class="en">(High Quality Print)</span> – barvy zůstanou v RGB.</li><li>Vypněte <b>Zachovat možnosti úprav v aplikaci Illustrator</b> – soubor bude výrazně menší.</li><li>Rozměr stránky pak vychází 1920 × 1080 pt.</li></ul>
+              <li><h4>Export</h4>
+                <p><span class="menu-path">Soubor › Exportovat › Média</span> <kbd>Ctrl</kbd>+<kbd>M</kbd>, formát <b>H.264</b>, předvolba <b>Match Source – High bitrate</b>, název <code>prijmeni_moodboard_3G.mp4</code>.</p>
+                <ul><li>Zkontrolujte, že export bere celou sekvenci a rozlišení je 1920 × 1080.</li></ul>
               </li>
             </ol>
           </div>
 
           <div class="app-panel" id="app-ps" role="tabpanel" aria-labelledby="t-ps" hidden>
-            <p class="lead2">Photoshop zvolte, když moodboard hodně stojí na úpravě a tónování fotek. Pozor na rozlišení dokumentu – rozhoduje o velikosti stránky PDF.</p>
+            <p class="lead2">Photoshop stačí, když nechcete opouštět soubor, ve kterém moodboard vznikl. Panel Časová osa umí klíčové snímky Krytí a Pozice a export do MP4 přímo z Photoshopu.</p>
             <ol class="recept">
-              <li><h4>Nový dokument</h4>
-                <p><span class="menu-path">Soubor › Nový</span> <kbd>Ctrl</kbd>+<kbd>N</kbd>, karta <b>Web</b>, <b>1920 × 1080 px</b>, rozlišení <b>72 ppi</b>, RGB 8 bitů.</p>
-                <ul><li>Při 300 ppi by stránka PDF měřila jen 461 × 259 pt – pixely by seděly, rozměr stránky ne. Ověřte si to v kalkulačce vpravo.</li><li>Pro více snímků zaškrtněte <b>Návrhové plochy</b> <span class="en">(Artboards)</span>.</li></ul>
+              <li><h4>Časová osa</h4>
+                <p><span class="menu-path">Okna › Časová osa</span> <span class="en">(Window › Timeline)</span>, tlačítko <b>Vytvořit časovou osu videa</b>. Dokument musí mít <b>1920 × 1080 px</b>; ppi tady nehraje roli, video má jen pixely.</p>
+                <ul><li>Vpravo nahoře v panelu nastavte <b>Kmitočet snímků</b> na 25 fps a délku pracovní oblasti na 12 s.</li></ul>
               </li>
-              <li><h4>Obrázky a rámečky</h4>
-                <p>Nástrojem <b>Rámeček</b> <kbd>K</kbd> <span class="en">(Frame Tool)</span> nakreslete pole a přetáhněte do něj fotku – vloží se jako inteligentní objekt a jde posouvat i měnit.</p>
-                <ul><li>Fotky sjednoťte jednou vrstvou úprav nad všemi (např. Fotografický filtr nebo Mapa přechodu s nízkým krytím).</li></ul>
+              <li><h4>Klíčové snímky</h4>
+                <p>U každé vrstvy rozbalte trojúhelník a u <b>Krytí</b> klikněte na stopky. Nastavte krytí vrstvy 0 % na čase, kdy se má objevit, posuňte přehrávací hlavu o 15 snímků a nastavte 100 %. Pro pohyb použijte <b>Pozice</b>.</p>
+                <ul><li>Inteligentní objekty nabízejí místo Pozice položku <b>Transformace</b> – tam animujete i měřítko.</li><li>Začátky vrstev odstupňujte tažením pruhů v časové ose.</li></ul>
               </li>
-              <li><h4>Export více snímků</h4>
-                <p><span class="menu-path">Soubor › Export › Návrhové plochy do PDF</span> <span class="en">(Artboards to PDF)</span>.</p>
-                <ul><li>Zvolte <b>Vícestránkový dokument</b>, kódování JPEG s kvalitou 10–12, zaškrtněte Zahrnout profil ICC.</li></ul>
-              </li>
-              <li><h4>Export jednoho snímku</h4>
-                <p><span class="menu-path">Soubor › Uložit kopii</span> <span class="en">(Save a Copy)</span>, formát <b>Photoshop PDF</b>, předvolba [Vysoká kvalita tisku].</p>
-                <ul><li>Vypněte Zachovat možnosti úprav aplikace Photoshop – PDF bude menší.</li></ul>
+              <li><h4>Export videa</h4>
+                <p><span class="menu-path">Soubor › Exportovat › Renderovat video</span> <span class="en">(Render Video)</span>. Nahoře Adobe Media Encoder, formát <b>H.264</b>, předvolba <b>Vysoká kvalita</b>, velikost <b>Velikost dokumentu 1920 × 1080</b>, 25 fps.</p>
+                <ul><li>Rozsah: Celý dokument nebo Pracovní oblast. Název <code>prijmeni_moodboard_3G.mp4</code>.</li></ul>
               </li>
             </ol>
           </div>
@@ -798,18 +797,20 @@ kbd{font:600 12.5px var(--mono);border:1px solid rgba(23,49,58,.25);border-botto
 
         <div class="reveal d1">
           <div class="calc">
-            <h3>Kalkulačka stránky PDF</h3>
-            <p>Zadejte rozměr a rozlišení dokumentu. Zjistíte, jak velká bude stránka PDF a jestli odpovídá zadání.</p>
-            <div class="in3">
+            <h3>Kalkulačka videa</h3>
+            <p>Zadejte rozměr, snímkovou frekvenci a délku. Zjistíte poměr stran, počet snímků, odhad velikosti souboru a jestli video odpovídá zadání.</p>
+            <div class="in3 in4">
               <label>Šířka (px)<input type="number" id="cW" value="1920" min="1" max="20000" inputmode="numeric"></label>
               <label>Výška (px)<input type="number" id="cH" value="1080" min="1" max="20000" inputmode="numeric"></label>
-              <label>Rozlišení (ppi)<input type="number" id="cP" value="72" min="1" max="2400" inputmode="numeric"></label>
+              <label>Snímků/s (fps)<input type="number" id="cF" value="25" min="1" max="240" inputmode="numeric"></label>
+              <label>Délka (s)<input type="number" id="cT" value="12" min="1" max="600" inputmode="numeric"></label>
             </div>
             <div class="presets" aria-label="Rychlé předvolby">
-              <button type="button" data-v="1920,1080,72">Full HD, 72 ppi</button>
-              <button type="button" data-v="1920,1080,300">Full HD, 300 ppi</button>
-              <button type="button" data-v="1080,1080,72">Post 1 : 1</button>
-              <button type="button" data-v="3840,2160,144">4K, 144 ppi</button>
+              <button type="button" data-v="1920,1080,25,12">Full HD, 25 fps, 12 s</button>
+              <button type="button" data-v="1920,1080,30,12">Full HD, 30 fps</button>
+              <button type="button" data-v="1080,1080,25,12">Post 1 : 1</button>
+              <button type="button" data-v="1080,1920,25,12">Stories 9 : 16</button>
+              <button type="button" data-v="3840,2160,25,12">4K</button>
             </div>
             <dl class="res" id="cRes"></dl>
             <div class="verdict" id="cVerdict" role="status"></div>
@@ -875,7 +876,7 @@ kbd{font:600 12.5px var(--mono);border:1px solid rgba(23,49,58,.25);border-botto
       <div class="next reveal">
         <a href="01-barevna-paleta.html"><b>Lekce 1</b>Barevná paleta – vizuální identita</a>
         <a class="cur" href="02-moodboard.html"><b>Lekce 2</b>Moodboard</a>
-        <span><b>Lekce 3</b>Animace a sociální sítě</span>
+        <a href="03-animace-socialni-site.html"><b>Lekce 3</b>Animace a sociální sítě</a>
         <span><b>Lekce 4</b>Obal a POS/POP</span>
         <span><b>Lekce 5</b>Webová inzerce</span>
         <span><b>Lekce 6</b>Portfolio tiskové</span>
@@ -1635,7 +1636,7 @@ $("#dlTpl").addEventListener("click", async () => {
     while (c.measureText(d.claim).width > w * 2.2 && fs > 30){ fs -= 4; c.font = `${d.font.w} ${fs}px ${d.font.css}`; }
     wrap(d.claim, x, y + fs, w, fs * 1.05); }
   c.fillStyle = lab; c.font = '500 18px "Barlow", sans-serif';
-  c.fillText(`Šablona moodboardu · ${d.t.cislo}. ${d.t.n} · rozvržení ${L.nazev} · 1920 × 1080 px · 3.G SPŠE Pardubice – vrstvu před exportem skryjte`, M, H - 40);
+  c.fillText(`Šablona moodboardu · ${d.t.cislo}. ${d.t.n} · rozvržení ${L.nazev} · 1920 × 1080 px · 3.G SPŠE Pardubice – vrstvu před animací smažte`, M, H - 40);
   c.strokeStyle = "rgba(233,40,110,.6)"; c.setLineDash([6, 6]); c.strokeRect(M, M, W - 2 * M, H - 2 * M); c.setLineDash([]);
   cv.toBlob(b => {
     if (!b){ hlas("Šablonu se nepodařilo vytvořit."); return; }
@@ -1705,7 +1706,7 @@ $("#dlTpl").addEventListener("click", async () => {
 /* =====================================================================
    Export: záložky aplikací, kalkulačka, kontrolní seznam
    ===================================================================== */
-(function exportPdf(){
+(function exportMp4(){
   const tabs = $$(".app-tabs .tab");
   function vyber(tab){
     tabs.forEach(t => { const on = t === tab; t.setAttribute("aria-selected", on); t.tabIndex = on ? 0 : -1; $("#" + t.getAttribute("aria-controls")).hidden = !on; });
@@ -1718,29 +1719,32 @@ $("#dlTpl").addEventListener("click", async () => {
     });
   });
 
-  const W = $("#cW"), H = $("#cH"), PP = $("#cP");
+  const W = $("#cW"), H = $("#cH"), F = $("#cF"), T = $("#cT");
   const gcd = (a, b) => b ? gcd(b, a % b) : a;
   function spocitej(){
-    const w = Math.round(+W.value), h = Math.round(+H.value), p = +PP.value;
+    const w = Math.round(+W.value), h = Math.round(+H.value), f = +F.value, t = +T.value;
     const res = $("#cRes"), v = $("#cVerdict");
-    if (!(w > 0 && h > 0 && p > 0)){ res.innerHTML = ""; v.className = "verdict no"; v.textContent = "Zadejte kladná čísla."; return; }
-    const pw = w / p * 72, ph = h / p * 72, mw = w / p * 25.4, mh = h / p * 25.4, g = gcd(w, h);
-    const ratio = `${w / g} : ${h / g}`;
-    res.innerHTML = `<dt>Stránka PDF</dt><dd>${cz(pw)} × ${cz(ph)} pt</dd><dt>Ve fyzických mírách</dt><dd>${cz(mw)} × ${cz(mh)} mm</dd><dt>Poměr stran</dt><dd>${ratio}${Math.abs(w / h - 16 / 9) < .002 && ratio !== "16 : 9" ? " (= 16 : 9)" : ""}</dd><dt>Pixelů celkem</dt><dd>${cz(w * h / 1e6, 2)} Mpx</dd>`;
+    if (!(w > 0 && h > 0 && f > 0 && t > 0)){ res.innerHTML = ""; v.className = "verdict no"; v.textContent = "Zadejte kladná čísla."; return; }
+    const g = gcd(w, h), ratio = `${w / g} : ${h / g}`;
     const je169 = Math.abs(w / h - 16 / 9) < .002;
+    const snimku = Math.round(f * t);
+    /* odhad datového toku H.264 pro klidnou grafiku: ~0,16 bitu na pixel a snímek, nejméně 6 Mb/s */
+    const mbps = Math.max(6, w * h * f * 0.16 / 1e6);
+    const mb = mbps * t / 8;
+    res.innerHTML = `<dt>Poměr stran</dt><dd>${ratio}${je169 && ratio !== "16 : 9" ? " (= 16 : 9)" : ""}</dd><dt>Snímků celkem</dt><dd>${cz(snimku, 0)}</dd><dt>Doporučený datový tok</dt><dd>${cz(mbps, 0)} Mb/s (H.264)</dd><dt>Odhad velikosti</dt><dd>≈ ${cz(mb, 0)} MB</dd>`;
     v.className = "verdict";
-    if (w === 1920 && h === 1080 && Math.abs(pw - 1920) < .5) v.textContent = "✓ Přesně podle zadání: Full HD 1920 × 1080, stránka PDF 1920 × 1080 pt.";
-    else if (w === 1920 && h === 1080){ v.className = "verdict no"; v.textContent = `Pixely sedí, ale stránka PDF bude ${cz(pw)} × ${cz(ph)} pt. Nastavte rozlišení dokumentu na 72 ppi.`; }
-    else if (je169 && Math.abs(pw - 1920) < .5) v.textContent = `✓ Stránka má správných 1920 × 1080 pt, jen s ${cz(w / 1920)}× jemnějšími obrázky. To je v pořádku, soubor bude větší.`;
-    else if (je169){ v.className = "verdict no"; v.textContent = `Poměr 16 : 9 sedí, ale rozměr není Full HD. Zadání chce 1920 × 1080 px.`; }
-    else { v.className = "verdict no"; v.textContent = `Tohle není 16 : 9 – na projektoru by vznikly černé pruhy. Zadání chce 1920 × 1080 px.`; }
+    if (w === 1920 && h === 1080 && f === 25 && t >= 8 && t <= 15) v.textContent = "✓ Přesně podle zadání: Full HD 1920 × 1080, 25 fps, délka 8 až 15 s.";
+    else if (w === 1920 && h === 1080 && (t < 8 || t > 15)){ v.className = "verdict no"; v.textContent = `Rozměr sedí, ale délka ${cz(t, 1)} s je mimo zadání. Animace má mít 8 až 15 s.`; }
+    else if (w === 1920 && h === 1080) v.textContent = `✓ Full HD 1920 × 1080. Snímková frekvence ${cz(f, 0)} fps projde, v Evropě je ale zvykem 25 fps.`;
+    else if (je169){ v.className = "verdict no"; v.textContent = "Poměr 16 : 9 sedí, ale rozměr není Full HD. Zadání chce 1920 × 1080 px."; }
+    else { v.className = "verdict no"; v.textContent = `Tohle není 16 : 9 – formát ${ratio} se hodí na sociální sítě (lekce 3), ne pro odevzdání moodboardu. Zadání chce 1920 × 1080 px.`; }
   }
-  [W, H, PP].forEach(el => el.addEventListener("input", spocitej));
-  $$(".calc .presets button").forEach(b => b.addEventListener("click", () => { const [a, bb, c] = b.dataset.v.split(","); W.value = a; H.value = bb; PP.value = c; spocitej(); }));
+  [W, H, F, T].forEach(el => el.addEventListener("input", spocitej));
+  $$(".calc .presets button").forEach(b => b.addEventListener("click", () => { const [a, bb, c, d] = b.dataset.v.split(","); W.value = a; H.value = bb; F.value = c; T.value = d; spocitej(); }));
   spocitej();
 
   const POLOZKY = [
-    "Dokument má 1920 × 1080 px, RGB (v Photoshopu 72 ppi)",
+    "Dokument má 1920 × 1080 px, RGB; každá část moodboardu je samostatná vrstva",
     "Na plátně je 6 až 12 obrázků se stejným světlem a barevností",
     "Klíčová fotografie je největší prvek",
     "Paleta 4 až 6 barev, u každé HEX (u tisku i CMYK)",
@@ -1748,8 +1752,8 @@ $("#dlTpl").addEventListener("click", async () => {
     "Textury a materiály pro obal a POS/POP",
     "3 až 5 klíčových slov a pracovní claim",
     "U převzatých obrázků je uvedený zdroj, žádné vodoznaky",
-    "Okraj aspoň 96 px, pomocná šablona je před exportem skrytá",
-    "PDF je otevřené a zkontrolované (stránka ≈ 677 × 381 mm), název prijmeni_moodboard_3G.pdf"
+    "Okraj aspoň 96 px, pomocná šablona je před exportem smazaná",
+    "MP4 přehrané mimo Adobe: H.264, 1920 × 1080, 25 fps, 8 až 15 s, poslední 2–3 s v klidu; název prijmeni_moodboard_3G.mp4"
   ];
   const stav = nactiJson(CHK) || [];
   const ul = $("#chk");
@@ -1775,9 +1779,9 @@ $("#dlTpl").addEventListener("click", async () => {
 const KVIZ = [
   {q:"Kolik obrázků obvykle patří na odevzdaný moodboard?", o:["2 až 3","6 až 12","30 až 40","Čím víc, tím lépe"], a:1, w:"Sbírá se jich víc, ale na plátno se dostanou jen ty nejsilnější – obvykle 6 až 12."},
   {q:"Které slovo se hodí mezi klíčová slova moodboardu?", o:["Voda","Plakát","Chladivý","Pardubice"], a:2, w:"Klíčová slova popisují náladu, proto přídavná jména. Voda a Pardubice jsou téma a místo."},
-  {q:"Dokument ve Photoshopu má 1920 × 1080 px a 300 ppi. Jak velká bude stránka PDF?", o:["1920 × 1080 pt","Asi 461 × 259 pt","Asi 8000 × 4500 pt","PDF velikost stránky nemá"], a:1, w:"Body = pixely ÷ ppi × 72, tedy 1920 ÷ 300 × 72 ≈ 461 pt. Proto prezentaci zakládejte v 72 ppi."},
-  {q:"Který typ exportu z InDesignu zvolíte pro prezentační PDF na obrazovku?", o:["Adobe PDF (Interaktivní)","JPEG","EPUB","IDML"], a:0, w:"Interaktivní PDF zůstává v RGB, umí se otevřít na celou obrazovku a hodí se pro projekci."},
-  {q:"Proč by fotky na moodboardu měly mít podobné světlo a barevnost?", o:["Kvůli menší velikosti souboru","Aby působily jako jedna kampaň","Protože to vyžaduje PDF","Nemusí, na tom nezáleží"], a:1, w:"Moodboard slibuje jednotný vizuální jazyk. Fotky z různých světů ten slib rozbijí."},
+  {q:"Dokument ve Photoshopu má 1920 × 1080 px a 300 ppi. Jak velké bude výsledné video?", o:["1920 × 1080 px – ppi na video nemá vliv","Asi 461 × 259 px","Asi 8000 × 4500 px","Video se z 300 ppi nedá vyrenderovat"], a:0, w:"Video má jen pixely a čas. Rozlišení v ppi je údaj pro tisk; na obrazovce se počítá výhradně s pixely."},
+  {q:"Jaký formát a kodek zvolíte pro odevzdání animovaného moodboardu?", o:["MP4 s kodekem H.264","MOV s kodekem ProRes","Animovaný GIF","Nekomprimované AVI"], a:0, w:"H.264 v kontejneru MP4 přehraje každý počítač, telefon i Teams, a soubor s 12 s Full HD má jen kolem 10–25 MB. ProRes a AVI jsou obrovské, GIF má jen 256 barev."},
+  {q:"Proč by fotky na moodboardu měly mít podobné světlo a barevnost?", o:["Kvůli menší velikosti souboru","Aby působily jako jedna kampaň","Protože to vyžaduje formát MP4","Nemusí, na tom nezáleží"], a:1, w:"Moodboard slibuje jednotný vizuální jazyk. Fotky z různých světů ten slib rozbijí."},
   {q:"Kam patří obrázek z Pinterestu, u kterého neznáte autora?", o:["Rovnou do odevzdaného moodboardu","Na inspirační nástěnku, ne do odevzdání","Do finálního plakátu","Nikam, Pinterest je zakázaný"], a:1, w:"Pro inspiraci ano. Do odevzdaných prací dávejte jen obrázky, u kterých znáte zdroj a licenci."}
 ];
 (function kviz(){
