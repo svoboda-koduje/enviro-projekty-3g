@@ -142,6 +142,7 @@ section[id]{scroll-margin-top:100px}
 .stages h3{font-family:var(--cond);font-weight:700;font-size:21px;line-height:1.1;margin:0 0 6px}
 .stages p{margin:0;font-size:15px;line-height:1.45;color:var(--ink-soft)}
 .stages li.current .dot{background:var(--water);border-color:var(--deep);color:var(--ink)}
+.stages li.done .dot{background:var(--water);border-color:var(--deep);color:var(--ink)}
 .stages .now{display:inline-block;margin-top:10px;font-size:13.5px;font-weight:600;color:var(--deep);background:rgba(56,196,240,.16);padding:3px 9px;border-radius:20px}
 @media (max-width:1100px){
   .stages{grid-template-columns:repeat(4,minmax(0,1fr));row-gap:36px}
@@ -455,7 +456,15 @@ body.rezim-upravy .edit-banner{display:flex}
             <span class="go">Otevřít lekci <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
           </a>
         </li>
-        <li class="soon"><span class="num">Lekce 5</span><strong>Webová inzerce</strong><p>Bannery podle standardů IAB a interaktivní banner „před a po“.</p><span class="badge">Připravujeme</span></li>
+        <li class="feat">
+          <a href="vyuka/05-webova-inzerce.html">
+            <span class="num">Lekce 5 · Webová inzerce</span>
+            <strong>Webová inzerce<small>Standardy IAB (Leaderboard, Medium Rectangle, Half Page) · anatomie banneru a limit 150 kB · posuvník před a po v CSS clip-path · validátor rozměru a velikosti</small></strong>
+            <p>Interaktivní lekce: vyzkoušejte si tři formáty IAB na modelu webu, vypínejte vrstvy hierarchie banneru, přetáhněte tahadlo mezi stavem před a po, zkopírujte si hotovou kódovou šablonu posuvníku a ověřte export validátorem rozměru a velikosti.</p>
+            <span class="sw" aria-hidden="true"><i style="background:#8A5A34"></i><i style="background:#C69A5B"></i><i style="background:#F2C230"></i><i style="background:#4E7A45"></i><i style="background:#38C4F0"></i><i style="background:#0F5673"></i></span>
+            <span class="go">Otevřít lekci <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a>
+        </li>
         <li class="soon"><span class="num">Lekce 6</span><strong>Portfolio tiskové</strong><p>Kampaňový balíček pro vybranou lokalitu či téma – finální PDF portfolio.</p><span class="badge">Připravujeme</span></li>
         <li class="soon"><span class="num">Lekce 7</span><strong>Portfolio webové</strong><p>Kampaňový balíček pro vybranou lokalitu či téma – webová prezentace.</p><span class="badge">Připravujeme</span></li>
       </ol>
@@ -603,7 +612,11 @@ body.rezim-upravy .edit-banner{display:flex}
 const REZIM_UPRAV = new URLSearchParams(location.search).has("upravy") || location.protocol === "file:";
 
 // Která etapa právě probíhá (1–7). Zvýrazní se v přehledu etap.
-const AKTUALNI_ETAPA = 1;
+const AKTUALNI_ETAPA = 6;
+
+// Kolik etap je už hotových (1–7) – jejich kolečko zmodrá, ale bez odznaku
+// „Právě probíhá“ (ten patří jen aktuální etapě výše).
+const HOTOVE_ETAPY = 5;
 
 // Témata, která mají vidět VŠICHNI návštěvníci webu (např. po schválení).
 // Blok vygeneruje tlačítko „Zkopírovat data pro zveřejnění“ – stačí jím nahradit tento objekt.
@@ -934,6 +947,7 @@ function init(){
   } else if (!ulozisteOK) $("#storageNote").textContent = "Tento prohlížeč nedovoluje ukládání. Zapsaná témata si před zavřením stránky stáhněte jako CSV nebo zálohu.";
 
   const etapy = document.querySelectorAll("#etapy li");
+  etapy.forEach((li, i) => { if (i < HOTOVE_ETAPY) li.classList.add("done"); });
   if (etapy[AKTUALNI_ETAPA-1]){ const li = etapy[AKTUALNI_ETAPA-1]; li.classList.add("current"); li.insertAdjacentHTML("beforeend", '<span class="now">Právě probíhá</span>'); }
 
   // školní rok podle data (září–srpen)
