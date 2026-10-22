@@ -220,6 +220,30 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 .gamut-legend i{display:inline-block;width:22px;height:0;border-top:3px solid var(--c);vertical-align:middle;margin-right:6px}
 .gamut-legend i.dot{width:12px;height:12px;border:0;border-radius:50%;background:var(--c)}
 
+/* ---------- Koule Lab (3D náhled prostoru CIELAB) ---------- */
+.koule-wrap{margin:clamp(36px,5vw,56px) 0}
+.koule-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+.koule-head h3{margin:0}
+.koule-hint{font-size:13.5px;color:var(--ink-soft)}
+.koule-lead{margin:0 0 20px;max-width:62em;color:var(--ink-soft);font-size:15.5px}
+.koule-lead b{color:var(--ink)}
+.koule-body{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(20px,3vw,32px);align-items:start;background:#fff;border:1px solid var(--line);border-radius:6px;padding:clamp(16px,2.4vw,26px)}
+.koule-stage{position:relative;background:rgba(23,49,58,.03);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.koule-stage canvas{width:100%;display:block;cursor:grab;touch-action:none}
+.koule-stage canvas:active{cursor:grabbing}
+.koule-txt{padding:12px 16px;font-size:13.5px;line-height:1.5;color:var(--ink-soft);border-top:1px solid var(--line);background:#fff}
+.koule-txt b{color:var(--ink)}
+.koule-grp{display:flex;flex-direction:column}
+.koule-presets{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 4px}
+.koule-check{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ink-soft);margin:8px 0;cursor:pointer}
+.koule-check input{margin:0}
+.koule-out{margin-top:14px;padding:14px 16px;background:rgba(23,49,58,.045);border-radius:6px;font-size:14px;line-height:1.75}
+.koule-out b{font-family:var(--cond);font-size:12.5px;letter-spacing:.04em;color:var(--ink-soft);text-transform:uppercase;font-weight:700}
+.koule-out .mimo{color:var(--heat);font-weight:600;font-style:normal}
+.koule-vzorek{display:flex;gap:8px;margin-bottom:8px}
+.koule-vzorek i{width:36px;height:36px;border-radius:4px;border:1px solid rgba(23,49,58,.2);display:block}
+@media (max-width:860px){.koule-body{grid-template-columns:1fr}}
+
 /* ---------- Odstín, sytost, světlost ---------- */
 .hsb{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:start}
 @media (max-width:900px){.hsb{grid-template-columns:1fr}}
@@ -653,6 +677,56 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
             <span class="warn" id="labWarn">Tato hodnota leží mimo gamut sRGB – zobrazena nejbližší barva.</span>
           </div>
         </article>
+      </div>
+
+      <div class="koule-wrap reveal">
+        <div class="koule-head">
+          <h3>Vyzkoušejte: barevná koule Lab</h3>
+          <span class="koule-hint">Kouli otočíte tažením myši nebo prstu</span>
+        </div>
+        <p class="koule-lead">Lab obsahuje všechny barvy, které vidí lidské oko – ostatní tři modely z něj lze odvodit. <b>Stupně šedi</b> jsou jen svislá osa L, <b>RGB</b> je uvnitř koule zdeformovaná krychle, <b>HSB</b> je tatáž krychle popsaná jinak (úhel, vzdálenost od osy, výška) a <b>CMYK</b> ještě menší těleso barev, které zvládne vytisknout tiskárna.</p>
+        <div class="koule-body">
+          <div class="koule-stage">
+            <canvas id="koule" role="img" aria-label="Otočná barevná koule Lab s vybranou barvou; podle zvoleného modelu ukazuje osu stupňů šedi, krychli RGB, souřadnice HSB nebo těleso tiskových barev CMYK"></canvas>
+            <div class="koule-txt" id="kouleTxt" aria-live="polite"></div>
+          </div>
+          <div class="koule-ctrl">
+            <div class="mode" role="tablist" aria-label="Zobrazený model" id="kouleMode">
+              <button type="button" role="tab" data-v="lab" aria-selected="true">Lab</button>
+              <button type="button" role="tab" data-v="sedi" aria-selected="false">Šedi</button>
+              <button type="button" role="tab" data-v="rgb" aria-selected="false">RGB</button>
+              <button type="button" role="tab" data-v="hsb" aria-selected="false">HSB</button>
+              <button type="button" role="tab" data-v="cmyk" aria-selected="false">CMYK</button>
+            </div>
+            <div class="koule-grp" data-grp="lab">
+              <div class="range"><label for="kL">L</label><input type="range" id="kL" min="0" max="100" value="55"><output>55</output></div>
+              <div class="range"><label for="kLa">a</label><input type="range" id="kLa" min="-128" max="127" value="0"><output>0</output></div>
+              <div class="range"><label for="kLb">b</label><input type="range" id="kLb" min="-128" max="127" value="0"><output>0</output></div>
+            </div>
+            <div class="koule-grp" data-grp="rgb" hidden>
+              <div class="range"><label for="kR">R</label><input type="range" id="kR" min="0" max="255" value="0"><output>0</output></div>
+              <div class="range"><label for="kG">G</label><input type="range" id="kG" min="0" max="255" value="0"><output>0</output></div>
+              <div class="range"><label for="kB">B</label><input type="range" id="kB" min="0" max="255" value="0"><output>0</output></div>
+            </div>
+            <div class="koule-grp" data-grp="hsb" hidden>
+              <div class="range"><label for="kH">H</label><input type="range" id="kH" min="0" max="359" value="0"><output>0</output></div>
+              <div class="range"><label for="kS">S</label><input type="range" id="kS" min="0" max="100" value="0"><output>0</output></div>
+              <div class="range"><label for="kV">B</label><input type="range" id="kV" min="0" max="100" value="0"><output>0</output></div>
+            </div>
+            <div class="koule-presets" id="koulePresets">
+              <button class="chip" type="button" data-rgb="255,0,0">Červená</button>
+              <button class="chip" type="button" data-rgb="255,255,0">Žlutá</button>
+              <button class="chip" type="button" data-rgb="0,255,0">Zelená</button>
+              <button class="chip" type="button" data-rgb="0,0,255">Modrá</button>
+              <button class="chip" type="button" data-lab="55,-37,-50">Azurová tisk</button>
+              <button class="chip" type="button" data-lab="50,0,0">Šedá</button>
+              <button class="chip" type="button" data-lab="60,-110,5">Jen v Lab</button>
+            </div>
+            <label class="koule-check"><input type="checkbox" id="koulePruhl"> Průhledné těleso</label>
+            <label class="koule-check"><input type="checkbox" id="kouleAuto" checked> Otáčet automaticky</label>
+            <div class="koule-out" id="kouleOut"></div>
+          </div>
+        </div>
       </div>
 
       <div class="gamut">
@@ -1298,6 +1372,332 @@ $$(".mix").forEach(box => {
     ctx.beginPath(); ctx.arc(px(x), py(y), 8, 0, Math.PI*2); ctx.fillStyle = curHex(); ctx.fill();
     ctx.strokeStyle = "#fff"; ctx.lineWidth = 3; ctx.stroke(); ctx.strokeStyle = "#17313A"; ctx.lineWidth = 1.5; ctx.stroke();
   });
+})();
+
+/* ---------- Koule Lab: otočný 3D náhled prostoru CIELAB a ostatních modelů ---------- */
+(function koule(){
+  const cv = $("#koule"), ctx = cv.getContext("2d"), stage = cv.parentElement;
+  const txtBox = $("#kouleTxt"), out = $("#kouleOut");
+  const autoEl = $("#kouleAuto"), pruhl = $("#koulePruhl");
+  const A = 160, KY = .8, D = Math.PI / 180, INK = "#17313A", FONT = "Barlow, system-ui, sans-serif";
+
+  /* --- převod Lab → sRGB s redukcí sytosti mimo gamut (pro hladký povrch koule) --- */
+  function toLin(L, a, b){
+    const fy = (L + 16) / 116, fx = a / 500 + fy, fz = fy - b / 200;
+    const X = fi(fx) * WN[0], Y = fi(fy) * WN[1], Z = fi(fz) * WN[2];
+    return xyzToLinRgb(X, Y, Z);
+  }
+  const inG = c => c[0] > -.002 && c[0] < 1.002 && c[1] > -.002 && c[1] < 1.002 && c[2] > -.002 && c[2] < 1.002;
+  const to8 = v => Math.round(gam(v));
+  function lab2rgb(L, a, b){
+    const c = toLin(L, a, b);
+    if (inG(c)) return {c: c.map(to8), ok: true};
+    let lo = 0, hi = 1;
+    for (let i = 0; i < 14; i++){ const m = (lo + hi) / 2; if (inG(toLin(L, a * m, b * m))) lo = m; else hi = m; }
+    return {c: toLin(L, a * lo, b * lo).map(to8), ok: false};
+  }
+  const rgbS = c => `rgb(${c[0]},${c[1]},${c[2]})`;
+  const rgbW = c => wp(...rgbToLab(c[0] * 255, c[1] * 255, c[2] * 255)); // c v 0..1
+  const rgbW255 = c => wp(...rgbToLab(c[0], c[1], c[2])); // c v 0..255
+  // poloha v kouli: x = a, y = L, z = b; měřítko zvolené tak, aby se krychle sRGB vešla do koule
+  const wp = (L, a, b) => [a / A, (L - 50) / 50 * KY, b / A];
+  const yL = L => (L - 50) / 50 * KY;
+
+  /* --- CMYK: tiskový gamut křídového papíru (přibližné hodnoty ISO 12647-2 / FOGRA39) --- */
+  const FOGRA = {W: [95, 0, -2], K: [16, 0, 0], C: [55, -37, -50], M: [48, 74, -3], Y: [89, -5, 93], R: [47, 68, 48], G: [50, -65, 27], B: [24, 22, -46]};
+  const RING = ["R", "Y", "G", "C", "B", "M"];
+  const cFaces = [];
+  RING.forEach((k, i) => { const n = RING[(i + 1) % 6]; cFaces.push(["W", k, n], ["K", n, k]); });
+  const sub = (u, v) => [u[0] - v[0], u[1] - v[1], u[2] - v[2]];
+  const cross = (u, v) => [u[1] * v[2] - u[2] * v[1], u[2] * v[0] - u[0] * v[2], u[0] * v[1] - u[1] * v[0]];
+  const dot = (u, v) => u[0] * v[0] + u[1] * v[1] + u[2] * v[2];
+  const stred = Object.values(FOGRA).reduce((s, p) => [s[0] + p[0] / 8, s[1] + p[1] / 8, s[2] + p[2] / 8], [0, 0, 0]);
+  const roviny = cFaces.map(f => { const [p0, p1, p2] = f.map(k => FOGRA[k]); let n = cross(sub(p1, p0), sub(p2, p0)); if (dot(n, sub(stred, p0)) > 0) n = n.map(v => -v); const d = Math.hypot(...n); return [n.map(v => v / d), p0]; });
+  const vTisku = (L, a, b) => roviny.every(([n, p0]) => dot(n, sub([L, a, b], p0)) <= .5);
+
+  /* --- předpočítané sítě těles --- */
+  const kostka = []; // povrch krychle RGB převedený do Lab
+  { const n = 7;
+    for (let ax = 0; ax < 3; ax++) for (const val of [0, 1]) for (let i = 0; i < n; i++) for (let j = 0; j < n; j++){
+      const pt = (u, v) => { const c = [0, 0, 0]; c[ax] = val; c[(ax + 1) % 3] = u; c[(ax + 2) % 3] = v; return c; };
+      const w = [pt(i / n, j / n), pt((i + 1) / n, j / n), pt((i + 1) / n, (j + 1) / n), pt(i / n, (j + 1) / n)].map(rgbW);
+      kostka.push({w, col: rgbS(pt((i + .5) / n, (j + .5) / n).map(v => Math.round(v * 255)))});
+    } }
+  const ROHY = {K: [0, 0, 0], R: [1, 0, 0], G: [0, 1, 0], B: [0, 0, 1], C: [0, 1, 1], M: [1, 0, 1], Y: [1, 1, 0], W: [1, 1, 1]};
+  const hrany = [];
+  Object.values(ROHY).forEach(c => [0, 1, 2].forEach(ax => { if (!c[ax]){ const d = c.slice(); d[ax] = 1; hrany.push([c, d]); } }));
+  const tisk = []; // povrch tiskového tělesa CMYK
+  cFaces.forEach(f => { const [p0, p1, p2] = f.map(k => FOGRA[k]), n = 6;
+    const at = (i, j) => [0, 1, 2].map(d => p0[d] + (p1[d] - p0[d]) * i / n + (p2[d] - p0[d]) * j / n);
+    const tri = (...t) => { const c = [0, 1, 2].map(d => (t[0][d] + t[1][d] + t[2][d]) / 3); tisk.push({w: t.map(l => wp(...l)), col: rgbS(lab2rgb(...c).c)}); };
+    for (let i = 0; i < n; i++) for (let j = 0; j < n - i; j++){ tri(at(i, j), at(i + 1, j), at(i, j + 1)); if (i + j < n - 1) tri(at(i + 1, j), at(i + 1, j + 1), at(i, j + 1)); } });
+
+  /* --- pohled a promítání (pravoúhlé) --- */
+  let yaw = -18 * D, pitch = 22 * D, W0 = 0, H0 = 0, dpr = 1, s = 1, cx = 0, cy = 0, cY = 1, sY = 0, cP = 1, sP = 0;
+  function P(p){ const x1 = p[0] * cY + p[2] * sY, z1 = -p[0] * sY + p[2] * cY; return [cx + s * x1, cy - s * (p[1] * cP + z1 * sP), -p[1] * sP + z1 * cP]; }
+  let prims = [];
+  const add = (z, f) => prims.push([z, f]);
+  function flush(){ prims.sort((a, b) => b[0] - a[0]); prims.forEach(p => p[1]()); prims = []; }
+  function poly(pts, fill, alpha = 1, edge = true){
+    ctx.beginPath(); pts.forEach((p, i) => i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1])); ctx.closePath();
+    ctx.globalAlpha = alpha; ctx.fillStyle = fill; ctx.fill();
+    if (edge){ ctx.strokeStyle = fill; ctx.lineWidth = .8; ctx.stroke(); }
+    ctx.globalAlpha = 1;
+  }
+  function usecka(a, b, col, w, alpha = 1, dash, primo){
+    const pa = P(a), pb = P(b), z = (pa[2] + pb[2]) / 2, al = Array.isArray(alpha) ? (z > 0 ? alpha[1] : alpha[0]) : alpha;
+    const f = () => { ctx.globalAlpha = al; ctx.strokeStyle = col; ctx.lineWidth = w; ctx.setLineDash(dash || []); ctx.beginPath(); ctx.moveTo(pa[0], pa[1]); ctx.lineTo(pb[0], pb[1]); ctx.stroke(); ctx.setLineDash([]); ctx.globalAlpha = 1; };
+    if (primo) f(); else add(z, f);
+  }
+  function krivka(fn, n, col, w, alpha = 1, dash, filtr, primo){
+    for (let i = 0; i < n; i++){ const a = fn(i / n), b = fn((i + 1) / n); if (filtr && !filtr(a, b)) continue; usecka(a, b, typeof col === "function" ? col((i + .5) / n) : col, w, alpha, dash, primo); }
+  }
+  function popisek(p3, t, opt = {}){
+    const p = P(p3), dx = p[0] - cx, dy = p[1] - cy, d = Math.hypot(dx, dy) || 1, k = opt.stred ? 0 : 1;
+    const x = p[0] + dx / d * 11 * k + (opt.dx || 0), y = p[1] + dy / d * 11 * k + (opt.dy || 0);
+    if (opt.tecka){ ctx.beginPath(); ctx.arc(p[0], p[1], 4.5, 0, 7); ctx.fillStyle = opt.tecka; ctx.fill(); ctx.lineWidth = 1.2; ctx.strokeStyle = INK; ctx.stroke(); }
+    ctx.font = `${opt.w || 700} ${opt.size || 13}px ${FONT}`;
+    ctx.textAlign = opt.align || (k === 0 || Math.abs(dx / d) < .35 ? "center" : dx > 0 ? "left" : "right");
+    ctx.textBaseline = k === 0 || Math.abs(dy / d) < .35 ? "middle" : dy > 0 ? "top" : "bottom";
+    ctx.lineJoin = "round"; ctx.lineWidth = 4; ctx.strokeStyle = "rgba(255,255,255,.92)"; ctx.strokeText(t, x, y);
+    ctx.fillStyle = opt.col || INK; ctx.fillText(t, x, y);
+  }
+
+  /* --- stav: vybraná barva v Lab (nezávisle na sdílené barvě lekce) --- */
+  const [L0, a0, b0] = rgbToLab(220, 70, 40);
+  const stObj = {L: L0, a: a0, b: b0};
+  let mode = "lab", hPam = 0;
+
+  /* --- části scény --- */
+  function pozadi(){
+    const g = ctx.createRadialGradient(cx - s * .35, cy - s * .4, s * .1, cx, cy, s);
+    g.addColorStop(0, "rgba(23,49,58,.015)"); g.addColorStop(1, "rgba(23,49,58,.08)");
+    ctx.beginPath(); ctx.arc(cx, cy, s, 0, 7); ctx.fillStyle = g; ctx.fill();
+  }
+  function obrys(){ ctx.beginPath(); ctx.arc(cx, cy, s, 0, 7); ctx.strokeStyle = "rgba(23,49,58,.35)"; ctx.lineWidth = 1; ctx.stroke(); }
+  function sit(yMin = -1.01){
+    const nad = (a, b) => a[1] >= yMin - 1e-6 && b[1] >= yMin - 1e-6;
+    for (let lat = -60; lat <= 60; lat += 30){ const y = Math.sin(lat * D), r = Math.cos(lat * D); if (y < yMin) continue; krivka(t => [r * Math.cos(t * 2 * Math.PI), y, r * Math.sin(t * 2 * Math.PI)], 60, INK, lat ? .7 : 1, [.32, .12]); }
+    for (let lon = 0; lon < 180; lon += 30){ const c = Math.cos(lon * D), sn = Math.sin(lon * D); krivka(t => { const u = t * 2 * Math.PI; return [Math.cos(u) * c, Math.sin(u), Math.cos(u) * sn]; }, 60, INK, .7, [.22, .08], null, nad); }
+  }
+  function osyRovnik(alpha = .5){
+    usecka([-1.12, 0, 0], [0, 0, 0], "#2E8B57", 1.6, alpha, [5, 4]); usecka([0, 0, 0], [1.12, 0, 0], "#C62828", 1.6, alpha, [5, 4]);
+    usecka([0, 0, -1.12], [0, 0, 0], "#1E4FC2", 1.6, alpha, [5, 4]); usecka([0, 0, 0], [0, 0, 1.12], "#C99A00", 1.6, alpha, [5, 4]);
+  }
+  function popiskyOs(y = 0, slabe){
+    const o = slabe ? {w: 600, size: 12, col: "#4A5F66"} : {};
+    popisek([1.16, y, 0], "+a červená", Object.assign({}, o, slabe ? {} : {col: "#B5552F"}));
+    popisek([-1.16, y, 0], "−a zelená", Object.assign({}, o, slabe ? {} : {col: "#1B6B3A"}));
+    popisek([0, y, 1.16], "+b žlutá", Object.assign({}, o, slabe ? {} : {col: "#8A6A00"}));
+    popisek([0, y, -1.16], "−b modrá", Object.assign({}, o, slabe ? {} : {col: "#1E3F9A"}));
+  }
+  function bod(){
+    const p = P(wp(stObj.L, stObj.a, stObj.b)), r = lab2rgb(stObj.L, stObj.a, stObj.b);
+    ctx.beginPath(); ctx.arc(p[0], p[1], 8, 0, 7); ctx.fillStyle = rgbS(r.c); ctx.fill();
+    ctx.lineWidth = 3; ctx.strokeStyle = "#fff"; ctx.stroke();
+    ctx.beginPath(); ctx.arc(p[0], p[1], 10, 0, 7); ctx.lineWidth = 1.4; ctx.strokeStyle = INK; ctx.setLineDash(r.ok ? [] : [3, 3]); ctx.stroke(); ctx.setLineDash([]);
+    return p;
+  }
+  const N = 170, tex = document.createElement("canvas"); tex.width = tex.height = N; let texL = null;
+  function textura(L){
+    if (texL === L) return; texL = L;
+    const yc = yL(L), rc2 = 1 - yc * yc, tx = tex.getContext("2d"), img = tx.createImageData(N, N), d = img.data;
+    const uvnitr = new Uint8Array(N * N), ok = new Uint8Array(N * N), col = new Uint8Array(N * N * 3);
+    for (let j = 0; j < N; j++) for (let i = 0; i < N; i++){
+      const u = 2 * (i + .5) / N - 1, v = 2 * (j + .5) / N - 1, k = j * N + i;
+      if (u * u + v * v > rc2) continue;
+      const r = lab2rgb(L, A * u, A * v); uvnitr[k] = 1; ok[k] = r.ok ? 1 : 0; col.set(r.c, k * 3);
+    }
+    for (let j = 0; j < N; j++) for (let i = 0; i < N; i++){
+      const k = j * N + i; if (!uvnitr[k]) continue;
+      let r = col[k * 3], g = col[k * 3 + 1], b = col[k * 3 + 2];
+      if (ok[k]){ const hr = [k - 1, k + 1, k - N, k + N].some(m => m >= 0 && m < N * N && uvnitr[m] && !ok[m]); if (hr){ r = 23; g = 49; b = 58; } }
+      else if ((i + j) % 6 === 0){ r = (r * 3 + 255) >> 2; g = (g * 3 + 255) >> 2; b = (b * 3 + 255) >> 2; }
+      d[k * 4] = r; d[k * 4 + 1] = g; d[k * 4 + 2] = b; d[k * 4 + 3] = 255;
+    }
+    tx.putImageData(img, 0, 0);
+  }
+  function rez(L){
+    textura(Math.round(L * 2) / 2);
+    const yc = yL(L), o = P([-1, yc, -1]), pu = P([1, yc, -1]), pv = P([-1, yc, 1]);
+    ctx.setTransform(dpr * (pu[0] - o[0]) / N, dpr * (pu[1] - o[1]) / N, dpr * (pv[0] - o[0]) / N, dpr * (pv[1] - o[1]) / N, dpr * o[0], dpr * o[1]);
+    ctx.imageSmoothingEnabled = true; ctx.drawImage(tex, 0, 0);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const rc = Math.sqrt(Math.max(0, 1 - yc * yc));
+    krivka(t => [rc * Math.cos(t * 2 * Math.PI), yc, rc * Math.sin(t * 2 * Math.PI)], 72, INK, 1.2, .7, null, null, true);
+  }
+  function teleso(yc){
+    const latC = Math.asin(clamp(yc, -1, 1)) / D, kroky = Math.max(1, Math.ceil((latC + 90) / 9)), dl = (latC + 90) / kroky;
+    const pt = (la, lo) => [Math.cos(la * D) * Math.cos(lo * D), Math.sin(la * D), Math.cos(la * D) * Math.sin(lo * D)];
+    for (let i = 0; i < kroky; i++){ const la0 = -90 + i * dl, la1 = la0 + dl, lm = (la0 + la1) / 2;
+      for (let lo = 0; lo < 360; lo += 10){
+        const c = pt(lm, lo + 5), pc = P(c); if (pc[2] > .02) continue;
+        const col = rgbS(lab2rgb(50 + 50 * c[1] / KY, A * c[0], A * c[2]).c);
+        const w = [pt(la0, lo), pt(la0, lo + 10), pt(la1, lo + 10), pt(la1, lo)].map(P);
+        add(pc[2], () => poly(w, col));
+      } }
+  }
+  function sitSolid(mesh, alpha){
+    const pr = alpha < 1;
+    mesh.forEach(m => { const w = m.w.map(P), z = w.reduce((s, p) => s + p[2], 0) / w.length; add(z, () => poly(w, m.col, alpha, !pr)); });
+  }
+  function hranyKrychle(col, w, alpha, dash){ hrany.forEach(([a, b]) => krivka(t => rgbW([0, 1, 2].map(d => a[d] + (b[d] - a[d]) * t)), 14, col, w, alpha, dash)); }
+  const nazvyRohu = {W: "bílá 255, 255, 255", K: "černá 0, 0, 0", R: "R 255, 0, 0", G: "G 0, 255, 0", B: "B 0, 0, 255", C: "C 0, 255, 255", M: "M 255, 0, 255", Y: "Y 255, 255, 0"};
+
+  /* --- režimy --- */
+  const REZIMY = {
+    lab(){
+      const yc = yL(stObj.L);
+      pozadi(); teleso(yc); flush(); rez(stObj.L);
+      sit(yc + .02); flush();
+      usecka([-1.12, yc, 0], [0, yc, 0], "#1B6B3A", 2.2, 1, null, true); usecka([0, yc, 0], [1.12, yc, 0], "#B5552F", 2.2, 1, null, true);
+      usecka([0, yc, -1.12], [0, yc, 0], "#1E3F9A", 2.2, 1, null, true); usecka([0, yc, 0], [0, yc, 1.12], "#9A7400", 2.2, 1, null, true);
+      usecka([0, yc, 0], [0, 1.12, 0], INK, 2.2, 1, null, true); usecka([0, -1, 0], [0, -1.12, 0], INK, 2.2, 1, null, true);
+      obrys(); popiskyOs(yc);
+      popisek([0, 1.14, 0], "L 100 · bílá"); popisek([0, -1.14, 0], "L 0 · černá");
+      popisek([.72, yc, -.72], `řez L = ${Math.round(stObj.L)}`, {w: 600, size: 12, col: "#4A5F66"});
+      bod();
+    },
+    sedi(){
+      pozadi(); sit(); osyRovnik(.35); flush(); obrys();
+      const yc = yL(stObj.L), rc = Math.sqrt(Math.max(0, 1 - yc * yc));
+      krivka(t => [rc * Math.cos(t * 2 * Math.PI), yc, rc * Math.sin(t * 2 * Math.PI)], 72, INK, 1, .45, [4, 4], null, true);
+      const p0 = P([0, -KY, 0]), p1 = P([0, KY, 0]), g = ctx.createLinearGradient(p0[0], p0[1], p1[0], p1[1]);
+      g.addColorStop(0, "#000"); g.addColorStop(1, "#fff");
+      ctx.lineCap = "butt"; ctx.lineWidth = 12; ctx.strokeStyle = INK; ctx.beginPath(); ctx.moveTo(p0[0], p0[1] + 1); ctx.lineTo(p1[0], p1[1] - 1); ctx.stroke();
+      ctx.lineWidth = 9; ctx.strokeStyle = g; ctx.beginPath(); ctx.moveTo(p0[0], p0[1]); ctx.lineTo(p1[0], p1[1]); ctx.stroke(); ctx.lineCap = "round";
+      for (let L = 0; L <= 100; L += 10){ const p = P([0, yL(L), 0]), sv = lab2rgb(L, 0, 0).c[0];
+        ctx.fillStyle = `rgb(${sv},${sv},${sv})`; ctx.strokeStyle = INK; ctx.lineWidth = 1; ctx.fillRect(p[0] + 12, p[1] - 5, 16, 10); ctx.strokeRect(p[0] + 12, p[1] - 5, 16, 10);
+        if (L % 50 === 0){ ctx.font = `600 11px ${FONT}`; ctx.textAlign = "left"; ctx.textBaseline = "middle"; ctx.fillStyle = "#4A5F66"; ctx.fillText(String(L), p[0] + 32, p[1]); } }
+      const pb = P(wp(stObj.L, stObj.a, stObj.b)), pa = P([0, yc, 0]), sv = lab2rgb(stObj.L, 0, 0).c[0];
+      ctx.setLineDash([5, 4]); ctx.strokeStyle = INK; ctx.lineWidth = 1.6; ctx.beginPath(); ctx.moveTo(pb[0], pb[1]); ctx.lineTo(pa[0], pa[1]); ctx.stroke(); ctx.setLineDash([]);
+      ctx.beginPath(); ctx.arc(pa[0], pa[1], 7, 0, 7); ctx.fillStyle = `rgb(${sv},${sv},${sv})`; ctx.fill(); ctx.lineWidth = 2; ctx.strokeStyle = "#B5552F"; ctx.stroke();
+      popisek([0, 1.14, 0], "L 100 · bílá"); popisek([0, -1.14, 0], "L 0 · černá");
+      popiskyOs(0, true);
+      popisek([0, yc, 0], `šedá ${sv} / 255`, {stred: true, dx: -16, align: "right", col: "#B5552F"});
+      bod();
+    },
+    rgb(){
+      pozadi(); sit(); osyRovnik(.3);
+      sitSolid(kostka, pruhl.checked ? .5 : 1); hranyKrychle(INK, 1.3, pruhl.checked ? .8 : .55);
+      usecka([0, -KY, 0], [0, KY, 0], INK, 1.4, pruhl.checked ? .9 : .5, [4, 4]);
+      flush(); obrys();
+      Object.keys(ROHY).forEach(k => popisek(rgbW(ROHY[k]), nazvyRohu[k], {tecka: rgbS(ROHY[k].map(v => v * 255))}));
+      bod();
+    },
+    hsb(){
+      pozadi(); sit(); osyRovnik(.3);
+      sitSolid(kostka, .14);
+      const rohy = RING.map(k => ROHY[k]);
+      rohy.forEach((c, i) => { const n = rohy[(i + 1) % 6];
+        krivka(t => rgbW([0, 1, 2].map(d => c[d] + (n[d] - c[d]) * t)), 14, t => rgbS([0, 1, 2].map(d => Math.round(255 * (c[d] + (n[d] - c[d]) * t)))), 3, .95);
+        krivka(t => rgbW(c.map(v => v * t)), 12, INK, .9, .45);
+        krivka(t => rgbW(c.map(v => 1 - t + v * t)), 12, INK, .9, .45); });
+      const col = lab2rgb(stObj.L, stObj.a, stObj.b).c, [h0, sa, br] = rgbToHsb(col[0], col[1], col[2]), h = sa > .4 ? h0 : hPam;
+      const barva = (H, S, B) => rgbS(hsbToRgb(H, S, B).map(Math.round));
+      krivka(t => rgbW255(hsbToRgb(360 * t, sa, br)), 72, t => barva(360 * t, sa, br), 4.5, 1);
+      krivka(t => rgbW255(hsbToRgb(h, t * 100, br)), 20, t => barva(h, t * 100, br), 4.5, 1);
+      krivka(t => rgbW255(hsbToRgb(h, sa, t * 100)), 20, t => barva(h, sa, t * 100), 4.5, 1);
+      flush(); obrys();
+      popisek(rgbW([0, 0, 0]), "B = 0 · černá"); popisek(rgbW([1, 1, 1]), "S = 0, B = 100 · bílá");
+      popisek(rgbW255(hsbToRgb(h, 100, br)), `S – sytost ${Math.round(sa)} %`, {col: "#B5552F"});
+      popisek(rgbW255(hsbToRgb(h, sa, 100)), `B – jas ${Math.round(br)} %`, {col: "#B5552F"});
+      popisek(rgbW255(hsbToRgb(h + 120, sa, br)), `H – odstín ${Math.round(h)}° (kroužek)`, {col: "#B5552F"});
+      bod();
+    },
+    cmyk(){
+      pozadi(); sit(); osyRovnik(.3);
+      sitSolid(tisk, pruhl.checked ? .5 : 1);
+      RING.forEach((k, i) => { const n = RING[(i + 1) % 6]; [["W", k], ["K", k], [k, n]].forEach(([a, b]) => usecka(wp(...FOGRA[a]), wp(...FOGRA[b]), INK, 1.3, pruhl.checked ? .85 : .6)); });
+      hranyKrychle("#3B4048", 1.1, .55, [4, 4]);
+      usecka(wp(...FOGRA.K), wp(...FOGRA.W), INK, 1.6, pruhl.checked ? .9 : .5, [4, 4]);
+      flush(); obrys();
+      const n = {W: "papír (bílá)", K: "K · černá", C: "C azurová", M: "M purpurová", Y: "Y žlutá", R: "M + Y", G: "C + Y", B: "C + M"};
+      Object.keys(n).forEach(k => popisek(wp(...FOGRA[k]), n[k], {tecka: rgbS(lab2rgb(...FOGRA[k]).c)}));
+      bod();
+    }
+  };
+  const TEXTY = {
+    lab: "Koule je schéma prostoru <b>CIELAB</b>. Svislá osa <b>L</b> je světlost (0 černá – 100 bílá), vodorovné osy jsou barevné protiklady: <b>a</b> zelená ↔ červená, <b>b</b> modrá ↔ žlutá. Řez ukazuje všechny barvy jedné světlosti – uprostřed šedá, k okraji roste sytost, obíháním kolem osy se mění odstín. Plné barvy uvnitř černé čáry zobrazí běžný monitor (sRGB); šrafovaný okraj Lab popsat umí, monitor ukáže jen nejbližší barvu. Skutečný Lab není přesná koule, je to zjednodušený model pro představu.",
+    sedi: "<b>Stupně šedi = Lab bez barevných os.</b> Promítněte barvu vodorovně na osu L: světlost zůstane, a i b se vynulují. Proto Photoshop i Illustrator při převodu do stupňů šedi zachová jen jas. Všechny barvy na čárkovaném kroužku mají stejnou světlost, a proto dají stejnou šedou – i červená a zelená, které na obrazovce vypadají úplně jinak.",
+    rgb: "Barvy obrazovky (tři světla R, G, B) tvoří uvnitř koule <b>zdeformovanou krychli</b> – gamut sRGB. Černá je dole, bílá nahoře, mezi nimi základní a doplňkové barvy. Krychle je pokřivená: žlutý roh leží vysoko (žlutá je světlá), modrý nízko (modrá je tmavá). Šedá úhlopříčka R = G = B leží přesně na ose L. Prostor koule mimo krychli běžný monitor nezobrazí.",
+    hsb: "<b>HSB je jiný popis téže RGB krychle</b> – souřadnice kolem šedé osy. <b>H</b> odstín = úhel kolem osy, <b>S</b> sytost = vzdálenost od osy ven, <b>B</b> jas = výška od černého vrcholu. Barevný šestiúhelník na okraji má S = 100 % a B = 100 % pro každý bod – a přesto body v kouli neleží ve stejné výšce: žlutá je mnohem světlejší než modrá. Jas B v HSB tedy není totéž co světlost L v Lab.",
+    cmyk: "Tiskové barvy na křídovém papíru (přibližně FOGRA39) tvoří <b>menší těleso</b>: nahoře papír, po obvodu azurová, purpurová, žlutá a jejich soutisky, dole černá. Čárkovaně je pro srovnání krychle sRGB – syté zelené, modré a oranžové z obrazovky leží mimo tiskové těleso, tedy mimo <b>gamut</b> tisku. Černá <b>K</b> tiskne přímo šedou osu, takže tmavé a neutrální tóny nejdou směsí barev, ale černou."
+  };
+
+  /* --- ovládání --- */
+  const sl = {L: $("#kL"), la: $("#kLa"), lb: $("#kLb"), r: $("#kR"), g: $("#kG"), b: $("#kB"), h: $("#kH"), s: $("#kS"), v: $("#kV")};
+  Object.values(sl).forEach(i => { const o = i.parentElement.querySelector("output"); const f = () => { if (o) o.textContent = i.value; }; i.addEventListener("input", f); f(); });
+  const grp = {}; $$(".koule-ctrl [data-grp]").forEach(g => grp[g.dataset.grp] = g);
+  const setSl = (i, v) => { i.value = v; const o = i.parentElement.querySelector("output"); if (o) o.textContent = i.value; };
+  function sync(krome){
+    const c = lab2rgb(stObj.L, stObj.a, stObj.b).c;
+    const [h, sa] = rgbToHsb(c[0], c[1], c[2], hPam);
+    if (sa > .4) hPam = h;
+    if (krome !== "lab"){ setSl(sl.L, Math.round(stObj.L)); setSl(sl.la, Math.round(stObj.a)); setSl(sl.lb, Math.round(stObj.b)); }
+    if (krome !== "rgb"){ setSl(sl.r, c[0]); setSl(sl.g, c[1]); setSl(sl.b, c[2]); }
+    if (krome !== "hsb"){ const [hh, ss, bb] = rgbToHsb(c[0], c[1], c[2], hPam); setSl(sl.h, Math.round(hh) % 360); setSl(sl.s, Math.round(ss)); setSl(sl.v, Math.round(bb)); }
+  }
+  function zmena(krome){ sync(krome); vypis(); draw(); }
+  [sl.L, sl.la, sl.lb].forEach(i => i.addEventListener("input", () => { stObj.L = +sl.L.value; stObj.a = +sl.la.value; stObj.b = +sl.lb.value; zmena("lab"); }));
+  [sl.r, sl.g, sl.b].forEach(i => i.addEventListener("input", () => { [stObj.L, stObj.a, stObj.b] = rgbToLab(+sl.r.value, +sl.g.value, +sl.b.value); zmena("rgb"); }));
+  [sl.h, sl.s, sl.v].forEach(i => i.addEventListener("input", () => { hPam = +sl.h.value; [stObj.L, stObj.a, stObj.b] = rgbToLab(...hsbToRgb(+sl.h.value, +sl.s.value, +sl.v.value)); zmena("hsb"); }));
+  $$("#koulePresets button").forEach(b => b.addEventListener("click", () => {
+    if (b.dataset.lab){ [stObj.L, stObj.a, stObj.b] = b.dataset.lab.split(",").map(Number); }
+    else { [stObj.L, stObj.a, stObj.b] = rgbToLab(...b.dataset.rgb.split(",").map(Number)); }
+    zmena();
+  }));
+  const modeBtns = $$("#kouleMode button");
+  modeBtns.forEach(b => b.addEventListener("click", () => {
+    modeBtns.forEach(x => x.setAttribute("aria-selected", "false")); b.setAttribute("aria-selected", "true");
+    mode = b.dataset.v; const g = mode === "rgb" ? "rgb" : mode === "hsb" ? "hsb" : "lab";
+    Object.keys(grp).forEach(k => grp[k].hidden = k !== g);
+    pruhl.closest("label").hidden = !(mode === "rgb" || mode === "cmyk");
+    txtBox.innerHTML = TEXTY[mode]; draw();
+  }));
+  pruhl.addEventListener("change", draw);
+
+  function vypis(){
+    const r = lab2rgb(stObj.L, stObj.a, stObj.b), c = r.c, [h, sa, br] = rgbToHsb(c[0], c[1], c[2], hPam);
+    const k = 1 - Math.max(...c) / 255, cmyk = k >= 1 ? [0, 0, 0, 100] : [...c.map(v => (1 - v / 255 - k) / (1 - k)), k].map(v => Math.round(v * 100));
+    const sv = lab2rgb(stObj.L, 0, 0).c[0], hx = hex(...c);
+    const vT = vTisku(stObj.L, stObj.a, stObj.b);
+    out.innerHTML = `<div class="koule-vzorek"><i style="background:${rgbS(c)}" title="barva"></i><i style="background:rgb(${sv},${sv},${sv})" title="stupně šedi"></i></div>
+      <b>Lab</b> L ${Math.round(stObj.L)} · a ${Math.round(stObj.a)} · b ${Math.round(stObj.b)}<br>
+      <b>Šedi</b> L ${Math.round(stObj.L)} → šedá ${sv} / 255<br>
+      <b>RGB</b> ${c.join(", ")} · ${hx}${r.ok ? "" : ` <span class="mimo">mimo sRGB – ukázána nejbližší</span>`}<br>
+      <b>HSB</b> ${sa > .4 ? Math.round(h) : "–"}° · ${Math.round(sa)} % · ${Math.round(br)} %<br>
+      <b>CMYK</b> ${cmyk.join(" / ")} % <small>(orientačně)</small><br>${vT ? "v gamutu tisku FOGRA39" : `<span class="mimo">mimo gamut tisku FOGRA39</span>`}`;
+  }
+
+  /* --- kreslení, velikost, otáčení --- */
+  function draw(){
+    if (!W0) return;
+    cY = Math.cos(yaw); sY = Math.sin(yaw); cP = Math.cos(pitch); sP = Math.sin(pitch);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, W0, H0);
+    ctx.lineCap = "round"; ctx.lineJoin = "round"; prims = [];
+    REZIMY[mode]();
+  }
+  function velikost(){
+    const w = stage.clientWidth; if (!w) return;
+    const h = Math.round(clamp(w * .8, 330, 580));
+    dpr = Math.min(2, window.devicePixelRatio || 1);
+    cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr); cv.style.width = "100%"; cv.style.height = h + "px";
+    W0 = w; H0 = h; s = Math.min(w * .28, h * .36); cx = w / 2; cy = h / 2 + 4; draw();
+  }
+  let tah = null, raf = 0, vid = true;
+  cv.addEventListener("pointerdown", e => { tah = [e.clientX, e.clientY, yaw, pitch]; cv.setPointerCapture(e.pointerId); autoEl.checked = false; cv.style.cursor = "grabbing"; });
+  cv.addEventListener("pointermove", e => { if (!tah) return; yaw = tah[2] - (e.clientX - tah[0]) * .008; pitch = clamp(tah[3] + (e.clientY - tah[1]) * .008, 6 * D, 75 * D); draw(); });
+  const pust = () => { tah = null; cv.style.cursor = ""; };
+  cv.addEventListener("pointerup", pust); cv.addEventListener("pointercancel", pust);
+  function smycka(){ raf = 0; if (!autoEl.checked || !vid) return; yaw -= .0035; draw(); raf = requestAnimationFrame(smycka); }
+  const spust = () => { if (!raf && autoEl.checked && vid) raf = requestAnimationFrame(smycka); };
+  autoEl.addEventListener("change", spust);
+  if (reduceMotion) autoEl.checked = false;
+  if ("IntersectionObserver" in window) new IntersectionObserver(e => { vid = e[0].isIntersecting; spust(); }).observe(cv);
+  if ("ResizeObserver" in window) new ResizeObserver(velikost).observe(stage); else window.addEventListener("resize", velikost);
+  txtBox.innerHTML = TEXTY[mode]; pruhl.closest("label").hidden = true;
+  sync(); vypis(); velikost(); spust();
 })();
 
 /* ---------- Pruhy odstín / sytost / jas + tinty, tóny, stíny ---------- */
