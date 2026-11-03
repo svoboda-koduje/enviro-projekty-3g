@@ -519,9 +519,25 @@ select{font:15px var(--font);padding:9px 10px;border:1px solid var(--line);borde
             <pre><code id="templateCode"></code></pre>
             <p class="status" id="copyStatus" aria-live="polite"></p>
           </div>
-          <div class="note reveal" style="margin-top:16px">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v5h1"/></svg>
-            <div><p><strong>Jak šablonu použít:</strong> 1) Zkopírujte kód tlačítkem výš a vložte ho do nového souboru s koncovkou <code>.html</code>. 2) Do stejné složky přidejte svoje dva obrázky a přejmenujte je na <code>pred.jpg</code> a <code>po.jpg</code> (nebo v kódu upravte <code>src="pred.jpg"</code> / <code>src="po.jpg"</code> na vlastní názvy). 3) V CSS upravte <code>width</code> a <code>height</code> třídy <code>.pp</code> podle formátu, který odevzdáváte (např. 300×250 nebo 728×90). 4) Soubor otevřete v prohlížeči a ověřte posuvník myší, dotykem i šipkami.</p></div>
+          <div class="reveal" style="margin-top:16px">
+            <h3>Úprava kódu, pojmenování a test souboru</h3>
+            <ol class="recept">
+              <li><h4>V jakém editoru kód upravit</h4><p>Stačí běžný textový editor, který už máte v počítači – žádný Adobe program tu nepomůže.</p>
+                <ul>
+                  <li><strong>Windows:</strong> Poznámkový blok (Start → napište „Poznámkový blok“). Pohodlnější je zdarma <a href="https://code.visualstudio.com/" target="_blank" rel="noopener">Visual Studio Code</a> (barevně zvýrazňuje kód), ale není nutný.</li>
+                  <li><strong>macOS:</strong> TextEdit (v Launchpadu). Než do něj kód vložíte, přepněte ho do prostého textu: <strong>Format → Make Plain Text</strong> (nebo Shift+Cmd+T) – jinak TextEdit uloží soubor jako formátovaný dokument (.rtf) a kód se v prohlížeči neotevře správně. I zde lze místo toho použít Visual Studio Code.</li>
+                </ul>
+              </li>
+              <li><h4>Vložení kódu a uložení souboru</h4><p>Zkopírujte šablonu tlačítkem „Zkopírovat šablonu“ výš, vložte ji do nového prázdného dokumentu a uložte příkazem <strong>Soubor → Uložit jako…</strong></p>
+                <ul>
+                  <li><strong>Windows, Poznámkový blok:</strong> do pole „Název souboru“ napište rovnou <code>banner.html</code> i s koncovkou. Pokud se přesto uloží jako <code>banner.html.txt</code>, přepněte pole „Uložit jako typ“ z „Textové dokumenty (*.txt)“ na „Všechny soubory“ a uložte znovu.</li>
+                  <li><strong>macOS, TextEdit:</strong> v dialogu uložení odškrtněte volbu „Pokud není zadána přípona, použít .txt“ a do názvu napište <code>banner.html</code>.</li>
+                  <li>Název pište vždy bez diakritiky a mezer, s koncovkou přesně <code>.html</code> malými písmeny – jinak prohlížeč zobrazí jen text kódu místo funkčního banneru.</li>
+                </ul>
+              </li>
+              <li><h4>Obrázky do stejné složky</h4><p>Oba obrázky dejte do stejné složky jako HTML soubor a přejmenujte je přesně na <code>pred.jpg</code> a <code>po.jpg</code> (bez diakritiky a mezer) – nebo v kódu upravte <code>src="pred.jpg"</code> / <code>src="po.jpg"</code> na vlastní názvy. V CSS ještě upravte <code>width</code> a <code>height</code> třídy <code>.pp</code> podle formátu, který odevzdáváte (např. 300×250 nebo 728×90).</p></li>
+              <li><h4>Otestujte banner</h4><p>Otevřete HTML soubor dvojklikem, nebo ho přetáhněte do okna prohlížeče. Vidíte funkční posuvník s oběma obrázky? Hotovo – žádná instalace ani server nejsou potřeba. Pokud se místo banneru zobrazí text kódu, soubor se neuložil jako čisté HTML (viz krok 2).</p></li>
+            </ol>
           </div>
         </div>
       </div>
@@ -609,9 +625,19 @@ select{font:15px var(--font);padding:9px 10px;border:1px solid var(--line);borde
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
             <div><p>Než odešlete, projděte si oba statické bannery validátorem výš – ověří rozměr i velikost za vás.</p></div>
           </div>
-          <div class="note reveal" style="margin-top:14px">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v5h1"/></svg>
-            <div><p><strong>Balení interaktivního banneru:</strong> HTML soubor šablony a oba obrázky (<code>pred.jpg</code>, <code>po.jpg</code>) dejte do jedné složky nebo je zabalte do jednoho <code>.zip</code> souboru – ne jako tři oddělené přílohy, jinak obrázky nepůjde přiřadit ke správnému kódu. Přesné místo odevzdání (Teams, OneDrive…) upřesní vyučující.</p></div>
+          <div class="reveal" style="margin-top:22px">
+            <h3>Zabalení a odevzdání do Teams</h3>
+            <ol class="recept">
+              <li><h4>Připravte jednu čistou složku</h4><p>Do nové složky dejte jen tři soubory interaktivního banneru: HTML soubor (<code>banner.html</code>) a oba obrázky (<code>pred.jpg</code>, <code>po.jpg</code>). Nic dalšího do ní nedávejte.</p></li>
+              <li><h4>Složku zabalte do ZIP</h4><p>Pravým tlačítkem myši na složku vyberte možnost komprimace:</p>
+                <ul>
+                  <li><strong>Windows:</strong> pokud v nabídce rovnou vidíte „Komprimovat do souboru ZIP“, použijte ji. Pokud ne, zvolte „Zobrazit další možnosti“ → „Odeslat“ → „Komprimovaná složka (zip)“.</li>
+                  <li><strong>macOS:</strong> klikněte na složku pravým tlačítkem (nebo Ctrl+klik) a zvolte „Komprimovat [název složky]“.</li>
+                </ul>
+              </li>
+              <li><h4>Přejmenujte výsledný ZIP soubor</h4><p>Nový <code>.zip</code> soubor přejmenujte přesně podle vzoru <code>prijmeni_jmeno_3G_banner.zip</code> – příjmení a jméno bez diakritiky, oddělené podtržítkem, malými písmeny. Příklad: <code>novak_petr_3G_banner.zip</code>.</p></li>
+              <li><h4>Odevzdejte do Teams</h4><p>Nahrajte tento jeden přejmenovaný <code>.zip</code> soubor jako odevzdání k úkolu této lekce v Teams – ne tři oddělené přílohy, jinak se obrázky nepřiřadí ke správnému kódu.</p></li>
+            </ol>
           </div>
         </div>
       </div>
