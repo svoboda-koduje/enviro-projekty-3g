@@ -291,11 +291,12 @@ body.rezim-upravy .edit-banner{display:flex}
 }
 
 /* Zdroje */
-.sources{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,3vw,40px)}
+.sources{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(18px,3vw,40px)}
 .source{padding:24px 0 0;border-top:1px solid var(--ink)}
 .source h3{font-family:var(--cond);font-weight:700;font-size:26px;margin:0 0 8px;line-height:1.05}
 .source p{margin:0 0 12px;font-size:16px;color:var(--ink-soft)}
 .source a{font-weight:600}
+@media (max-width:1024px){.sources{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:860px){.sources{grid-template-columns:1fr}}
 
 /* Patička */
@@ -567,6 +568,11 @@ body.rezim-upravy .edit-banner{display:flex}
           <h3>Nové ostrovy</h3>
           <p>Kniha Václava Cílka, Amara Ibrahima a kolektivu o odolnosti jednotlivců, rodin, měst a komunit v době složených krizí.</p>
           <span>Václav Cílek, Amar Ibrahim a kol.</span>
+        </article>
+        <article class="source">
+          <h3>Jak navrhnout město, které (pře)žije?</h3>
+          <p>Komiks o 8 oblastech, v nichž lze lépe připravit města na změnu klimatu – shrnutí faktů, dat a opatření k využití v kampaních.</p>
+          <a href="zdroje/jak-navrhnout-mesto.html" target="_blank" rel="noopener">otevřít podklady</a>
         </article>
       </div>
     </div>
